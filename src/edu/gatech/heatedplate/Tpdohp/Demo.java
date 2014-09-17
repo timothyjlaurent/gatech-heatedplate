@@ -10,8 +10,11 @@ public class Demo {
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		PlateOptionObj optionObj =  PlateOptionParser.parseOptions(args);
+		
 		ObjectPlate objP = new ObjectPlate();
+		
 		diplayPlate( initializePlate(objP, optionObj) );
+		
 		runSimulation( objP );
 	}
 
