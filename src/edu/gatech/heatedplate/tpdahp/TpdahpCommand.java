@@ -69,8 +69,8 @@ public class TpdahpCommand implements Command {
      	    	  
      	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] -  oldDoublePlate.mPlateValues[row][col];
      	    	  
-     	    	  if( tempPercisionDelta   <= percisionThreshold)
-     	    		  break;
+     	    	//  if( tempPercisionDelta   <= percisionThreshold)
+     	    	//	  break;
      	    		  
    	            }
          	
