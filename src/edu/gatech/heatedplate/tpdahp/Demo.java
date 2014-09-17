@@ -32,7 +32,7 @@ public class Demo {
 		     // if (args.length <5)
 		    //	  throw new IllegalArgumentException("The wrong number of arguments have been supplied.");
 		      
-		      TpdahpPlate heatedPlate = new TpdahpPlate(30, 50.0,30.23,45.12,57.87);
+		      TpdahpPlate heatedPlate = new TpdahpPlate(100, 509.028397862,3022.23,4522.1278372,5732.87657354);
 		      TpdahpCommand tpdahp = new TpdahpCommand(heatedPlate);
 		      
 		 

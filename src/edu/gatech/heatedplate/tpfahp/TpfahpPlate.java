@@ -12,7 +12,7 @@ public class TpfahpPlate implements Plate {
     private float      mTop;
     private float      mBottom; 
 	public  float[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
-	private static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
+	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
 	/* concrete plate constructor for Tpdahp plate 
@@ -25,7 +25,7 @@ public class TpfahpPlate implements Plate {
 	public TpfahpPlate(int d , float l, float r, float t, float b) 
 	  {
 		numIterations++;     // static counter for number of instantiated iterations 
-        mPlateValues      = new float[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+        mPlateValues      = new float[d + 2] [d +2] ;  //creates a 2 dimensional array of float in the size of d +2
         mLeft             = l;
         mRight            = r;
         mTop              = t;
@@ -108,5 +108,19 @@ public class TpfahpPlate implements Plate {
 	public int  getDimension() {
 		return mDim;
 	}
+	
+	public void DisplpayPlateTemp()
+	  {
+		for (int row = 1; row <= this.getDimension(); row++)
+        {
+	     	 for (int col = 1; col <= this.getDimension(); col++ )
+	            {
+	     		 System.out.print("| "+ Math.round(mPlateValues[row][col] *100.00f)/100.00f +" | " );
+	            }
+	     	 System.out.print("\n");
+	    }
+	  }
+	
+	
 	
 }

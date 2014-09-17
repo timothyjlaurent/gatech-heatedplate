@@ -1,17 +1,17 @@
-package edu.gatech.heatedplate.tpdahp;
+package edu.gatech.heatedplate.twfahp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;
 
-public class TpdahpPlate implements Plate {
+public class TwfahpPlate implements Plate {
 
-	private double      mLeft;        
-    private double      mRight;
-    private double      mTop;
-    private double      mBottom; 
-	public  double[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
+	private Float      mLeft;        
+    private Float      mRight;
+    private Float      mTop;
+    private Float      mBottom; 
+	public  Float[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
 	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
@@ -22,10 +22,10 @@ public class TpdahpPlate implements Plate {
 	 * @param <b>t</b> Top edge of plate lattice
 	 * @param <b>b</b> Bottom edge of plate lattice
 	 */
-	public TpdahpPlate(int d , double l, double r, double t, double b) 
+	public TwfahpPlate(int d , Float l, Float r, Float t, Float b) 
 	  {
 		numIterations++;     // static counter for number of instantiated iterations 
-        mPlateValues      = new double[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+        mPlateValues      = new Float[d + 2] [d +2] ;  //creates a 2 dimensional array of float in the size of d +2
         mLeft             = l;
         mRight            = r;
         mTop              = t;
@@ -76,50 +76,51 @@ public class TpdahpPlate implements Plate {
 	  return map;
 	}
 
-	public double getLeft() {
+	public Float getLeft() {
 		return mLeft;
 	}
 
-	public void setLeft(double mLeft) {
+	public void setLeft(Float mLeft) {
 		this.mLeft = mLeft;
 	}
-	public double getRight() {
+	public Float getRight() {
 		return mRight;
 	}
 
-	public void setRight(double mRight) {
+	public void setRight(Float mRight) {
 		this.mRight = mRight;
 	}
-	public double getTop() {
+	public Float getTop() {
 		return mTop;
 	}
 
-	public void setTop(double mTop) {
+	public void setTop(Float mTop) {
 		this.mTop = mTop;
 	}
 	
-	public double getBottom() {
+	public float getBottom() {
 		return mBottom;
 	}
 
-	public void setBottom(double mBottom) {
+	public void setBottom(Float mBottom) {
 		this.mBottom = mBottom;
 	}
 	public int  getDimension() {
 		return mDim;
 	}
-
+	
 	public void DisplpayPlateTemp()
 	  {
 		for (int row = 1; row <= this.getDimension(); row++)
-      {
+        {
 	     	 for (int col = 1; col <= this.getDimension(); col++ )
 	            {
-	     		 System.out.print("| "+ Math.round(mPlateValues[row][col] *100.00)/100.00 +" | " );
+	     		 System.out.print("| "+ Math.round(mPlateValues[row][col] *100.00f)/100.00f +" | " );
 	            }
 	     	 System.out.print("\n");
 	    }
 	  }
 	
-
+	
+	
 }
