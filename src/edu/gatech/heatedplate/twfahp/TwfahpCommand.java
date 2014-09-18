@@ -57,22 +57,27 @@ public class TwfahpCommand implements Command {
 	   {
 		   
 	     int d = oldFloatPlate.getDimension();
-	 	
+	 
 	     for (int row = 1; row <= d; row++)
             {
 	    	 newFloatPlate.numIterations++;
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
-     	    	  newFloatPlate.mPlateValues[row][col]  = ((oldFloatPlate.mPlateValues[row + 1] [col].floatValue()  + 
-     		                                                oldFloatPlate.mPlateValues[row - 1] [col].floatValue()  +
-     		                                                oldFloatPlate.mPlateValues[row] [col +1].floatValue()   +
-     		                                                oldFloatPlate.mPlateValues[row] [col - 1].floatValue()) / 4.0f);
-     	      // if ((newFloatPlate.numIterations > d+2) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
-     	    ///	 tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
+   	     		 
+   	     		
+   	     		newFloatPlate.mPlateValues[row][col]  =   new Float((oldFloatPlate.mPlateValues[row + 1] [col]  + 
+     		                                                     oldFloatPlate.mPlateValues[row - 1] [col]  +
+     		                                                     oldFloatPlate.mPlateValues[row] [col +1]   +
+     		                                                     oldFloatPlate.mPlateValues[row] [col - 1])/4.00f);
+   	     		                            
+   	     		                         
+   	    	  
+     	     //if ((newFloatPlate.numIterations > (d+2 * d+2) ) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
+     	    //	 tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
      	    	  
-     	   // 	  if( tempPercisionDelta   <= percisionThreshold)
-     	   // 		  continue;
+     	    //	  if( tempPercisionDelta   <= percisionThreshold)
+     	   // 		  break rowloop ;
      	    		  
    	            }
          	

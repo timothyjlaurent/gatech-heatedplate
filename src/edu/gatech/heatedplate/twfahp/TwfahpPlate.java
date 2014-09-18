@@ -47,18 +47,21 @@ public class TwfahpPlate implements Plate {
         	 for (int col = 0; col < d+2; col++ )
       	        {
       		     //set the edge value when traversal reaches edge
+        		   mPlateValues[row][col]  = new Float(0);
       		
       		     if( (row == 0 ) )                         // top row
-      		       mPlateValues[row][col] = mTop;
+      		       mPlateValues[row][col] = new Float(mTop);
       		
       		     if( (col == 0))                           // left edge   
-      		       mPlateValues[row][col] = mLeft;
+      		       mPlateValues[row][col] = new Float(mLeft);
       		
       		     if( (row == d+1 ) )                       // right edge   
-        	       mPlateValues[row][col] = mBottom;
+        	       mPlateValues[row][col] = new Float(mBottom);
         		
         	     if( (col == d+1))                         // bottom edge    
-        	       mPlateValues[row][col] = mRight;
+        	       mPlateValues[row][col] = new Float(mRight);
+        	     
+        	     
       	    
       	       } // end col-loop
       	
