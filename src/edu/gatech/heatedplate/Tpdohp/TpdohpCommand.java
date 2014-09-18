@@ -19,8 +19,6 @@ public class TpdohpCommand implements Command {
 	public ObjectPlate execute(ObjectPlate oldPlate){
 		newPlate = new ObjectPlate(oldPlate.getWidth(), oldPlate.getHeight(), 
 				oldPlate.getTop().getTemp(), oldPlate.getRight().getTemp(), oldPlate.getBottom().getTemp(), oldPlate.getLeft().getTemp());
-		
-		
 		int height = oldPlate.getHeight();
 		int width = oldPlate.getWidth();
 		this.iteration += 1 ;
@@ -28,7 +26,7 @@ public class TpdohpCommand implements Command {
 		this.maxDelta = 0.0;
 		for( int row = 0 ; row < height ; row += 1 ){
 			for( int col = 0 ; col < width ; col += 1  ){
-				newPlate.setTemp(row , col, oldPlate.getNextTemp(row, col));
+				newPlate.setGrid(row , col, oldPlate.getNextTemp(row, col));
 				double delta = getDelta(oldPlate, row , col );
 				if( Math.abs( delta ) > maxDelta ){
 					this.maxDelta = Math.abs(delta);

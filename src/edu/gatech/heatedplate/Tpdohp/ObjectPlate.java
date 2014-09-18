@@ -42,17 +42,26 @@ public class ObjectPlate implements Plate {
 		this.right = new GridObj( right );
 		this.left = new GridObj( left );
 		this.bottom = new GridObj( bottom );
-		grid = new HashMap<Integer, HashMap<Integer, GridObj >>();
+		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( height * 5 );
+//		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( );
 		
-		for( int row = 0 ; row < height ; row += 1 ){
-			for( int col = 0 ; col < width ; col += 1  ){
-				setGrid(row , col, 0);
-			}
-		}
-		makeGridConnections();	
+//		for( int row = 0 ; row < height ; row += 1 ){
+//			for( int col = 0 ; col < width ; col += 1  ){
+//				setGrid(row , col, 0);
+//			}
+//		}
+//		makeGridConnections();	
 		this.iteration = 0;
 		this.maxDelta = 0.0;
 	}	
+		
+	public void intializePlate(){
+		for( int row = 0 ; row < height; row += 1){
+			for ( int col = 0 ; col < height ; col += 1){
+				setGrid(row, col, 0.0);
+			}
+		}
+	}
 
 	private void makeGridConnections() {
 		for( int row = 0 ; row < height ; row += 1 ){
@@ -82,13 +91,46 @@ public class ObjectPlate implements Plate {
 		}
 	}
 
-
+	// assumes that the grid is being set from the left to the right and the top to the bottom
 	protected void setGrid( int row, int col, double temp){
 		if( !grid.containsKey(row) ){
-			grid.put(row, new HashMap<Integer, GridObj >());	
+			grid.put(row, new HashMap<Integer, GridObj >(width * 5 ));	
+//			grid.put(row, new HashMap<Integer, GridObj >( ));	
 		}	
 		grid.get(row).put(col, new GridObj(temp));
+		growGrid(row, col);
 	}
+	
+	// assumes grid is being grown from left to right and top to bottom
+	protected void growGrid( Integer row, Integer col ){
+		GridObj cur = grid.get(row).get(col);
+		if ( row == 0 ){
+			cur.un = top;
+		} else {
+			cur.un = grid.get( row - 1 ).get( col );
+			cur.un.dn = cur;
+		}
+		if( row == height - 1 ){
+			cur.dn = bottom;
+		}
+		if( col == 0 ){
+			cur.ln = left;
+		} else{
+			cur.ln = grid.get(row).get(col-1);
+			cur.ln.rn = cur;
+		}
+		if( col == width - 1 ){
+			cur.rn = right;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	protected void setTemp( int row, int col, double temp){
 		grid.get(row).get(col).setTemp(temp);
