@@ -18,6 +18,8 @@ public class Demo {
 		PlateOptionObj oo =  PlateOptionParser.parseOptions(args);
 		
 		ObjectPlate objP = new ObjectPlate( oo.width, oo.height, oo.top, oo.right, oo.bottom, oo.left);
+		objP.intializePlate();
+		// plate has zeros
 		objP.print();
 		TpdohpCommand tpdohp = new TpdohpCommand(objP);
 		do {
