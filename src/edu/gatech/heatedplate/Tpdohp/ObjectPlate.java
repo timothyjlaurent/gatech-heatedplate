@@ -10,15 +10,15 @@ import edu.gatech.heatedplate.common.Plate;
 public class ObjectPlate implements Plate {
 	
 	HashMap<Integer, HashMap<Integer, GridObj>> grid; //
-	private Integer height;  // dimensions
-	private Integer width;   // dimensions
+	private int height;  // dimensions
+	private int width;   // dimensions
 	private GridObj top;      // temperatures
 	private GridObj bottom;   // ''
 	private GridObj right;    // ''
 	private GridObj left;     // ''
 //	GridObj upperLeft; // the upper left grid coordinate
-	private Integer iteration; // the iteration #
-	private Double maxDelta;
+	private int iteration; // the iteration #
+	private double maxDelta;
 	
 	public HashMap<Integer, Plate> getTemp(){
 		HashMap<Integer, Plate> map = new HashMap<Integer, Plate>();
@@ -29,11 +29,10 @@ public class ObjectPlate implements Plate {
 	public void setInteration(int i ){
 		iteration = i ;
 	}
-
-	public void setMaxDelta(double d ){
+	
+	public void setMaxDelta(double d){
 		this.maxDelta = d;
 	}
-	
 	
 	
 	public ObjectPlate(Integer width, Integer height, Double top, Double right , Double bottom , Double left){
@@ -179,7 +178,7 @@ public class ObjectPlate implements Plate {
 		}
 		
 		public double getTemp(){
-			return this.temp;
+			return temp;
 		}
 		
 		public void setTemp(double temp){
