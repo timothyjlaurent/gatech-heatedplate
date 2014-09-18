@@ -12,7 +12,7 @@ package edu.gatech.heatedplate.PlateCommon;
 public class IterationMessage {
 
 	double[][] plateTemps; // [0] top  [0] left
-	int iteration; 
+	int iteration; 		  
 	double maxDelta;
 	double top;
 	double bottom;

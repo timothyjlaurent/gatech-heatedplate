@@ -1,6 +1,6 @@
 package edu.gatech.heatedplate.PlateCommon;
 
-public abstract class Plate {
+public abstract class PlateObj {
 	
 	
 	public abstract IterationMessage initializePlate(int height, 

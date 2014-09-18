@@ -2,60 +2,36 @@ package edu.gatech.heatedplate.Tpdohp;
 
 import edu.gatech.heatedplate.PlateCommon.*;
 
+/**
+ * 
+ * @author tlaurent
+ *
+ */
 public class Demo {
 
 	public static double deltaThreshold = .01;
 	
 	
 	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		PlateOptionObj optionObj =  PlateOptionParser.parseOptions(args);
 		
-		ObjectPlate objP = new ObjectPlate();
+		try {
+		PlateOptionObj oo =  PlateOptionParser.parseOptions(args);
 		
-		diplayPlate( initializePlate(objP, optionObj) );
-		
-		runSimulation( objP );
-	}
-
-	
-	
-	private static void runSimulation(ObjectPlate objP) {
-		IterationMessage itrm;
+		ObjectPlate objP = new ObjectPlate( oo.width, oo.height, oo.top, oo.right, oo.bottom, oo.left);
+		objP.print();
+		TpdohpCommand tpdohp = new TpdohpCommand(objP);
 		do {
-			itrm = objP.iterate();
-			diplayPlate(itrm);
+			objP = tpdohp.execute(objP);
+			objP.print();
+		} while ( tpdohp.getMaxDelta() > deltaThreshold || tpdohp.getIteration() < 1000000 );
 		}
-		while ( itrm.getMaxDelta() > deltaThreshold 
-				|| itrm.getIteration() > 1000000 );
-	}
-
-	/**
-	 * Prints the textual representaion of the plateObject including
-	 * iteration #, max delta, and the grid table
-	 * 
-	 * @param initiatePlate
-	 */
-	private static void diplayPlate(IterationMessage currentPlate) {
-		// TODO Print out the plate values to the correct decimal place
+		catch ( Exception e)
+		{
+		e.getMessage();
+		}
+	
 		
 	}
 
-
-	private static IterationMessage initializePlate(ObjectPlate objP, PlateOptionObj optionObj) {
-		 return objP.initializePlate(optionObj.getHeight(),
-				optionObj.getWidth(),
-				optionObj.getTop(), 
-				optionObj.getRight(),
-				optionObj.getBottom(),
-				optionObj.getLeft());
-	}
-
-	
-	
-	
-	
-	
-	
 	
 }

@@ -14,19 +14,11 @@ public class PlateOptionParser {
 			double bottom;
 			
 			if (  cur.equals("-d") ){
-	
-				try {
-					length = Integer.parseInt(argv[i+1]);		
-				} catch ( NumberFormatException e ){
-					throw new PlateException("-d must be followed by an integer!");
-				}
-				if( length < 1 || length > 100 ){
-					throw new PlateException("-d parameter must be between 1 and 100!");
-				}
+				length = checkD( argv[ i + 1 ] );
 				optionObj.setHeight(length);
-				optionObj.setWidth(length);
-				
+				optionObj.setWidth(length);	
 			}
+			
 			if( cur.equals("-l") ){
 				
 				
@@ -92,6 +84,23 @@ public class PlateOptionParser {
 		
 	}
 
+	
+	public static int checkD(String l) throws PlateException{
+		int length;
+		try {
+			length = Integer.parseInt( l );		
+		} catch ( NumberFormatException e ){
+			throw new PlateException("-d must be followed by an integer!");
+		}
+		if( length < 1 || length > 100 ){
+			throw new PlateException("-d parameter must be between 1 and 100!");
+		}
+		return length;
+	}
+	
+	
+	
+	
 	private static boolean checkOptionObj(PlateOptionObj optionObj) {
 		
 		if ( optionObj.getHeight() == null ||

@@ -17,7 +17,7 @@ package edu.gatech.heatedplate.tpdahp;
  	 * 
  	 * 
  	 * @see TpdahpCommand 
- 	 * @see Plate
+ 	 * @see PlateObj
      * @see TpdahpPlate 
  	*/ 
 public class Demo {
