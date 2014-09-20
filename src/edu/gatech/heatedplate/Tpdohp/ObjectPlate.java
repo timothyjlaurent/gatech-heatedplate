@@ -3,9 +3,12 @@ package edu.gatech.heatedplate.Tpdohp;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 
+
 //import edu.gatech.heatedplate.PlateCommon.IterationMessage;
 //import edu.gatech.heatedplate.PlateCommon.PlateObj;
 import edu.gatech.heatedplate.common.Plate;
+import edu.gatech.heatedplate.Tpdohp.GridObj;
+
 
 public class ObjectPlate implements Plate {
 	
@@ -51,7 +54,7 @@ public class ObjectPlate implements Plate {
 	 * @param bottom
 	 * @param left
 	 */
-	public ObjectPlate(Integer width, Integer height, Double top, Double right , Double bottom , Double left){
+	public ObjectPlate(int width, int height, double top, double right , double bottom , double left){
 		this.width = width;
 		this.height = height;
 		this.top = new GridObj( top );
@@ -71,6 +74,11 @@ public class ObjectPlate implements Plate {
 		this.maxDelta = 0.0;
 	}	
 
+	public ObjectPlate(int d, double top, double right , double bottom , double left){
+		this(d,d,top,right,bottom,left);
+	}
+	
+	
 	/**
 	 * Creates initial grid and populates it with zeros
 	 */
@@ -179,7 +187,7 @@ public class ObjectPlate implements Plate {
 	 * @return
 	 */
 	protected double getTemp(int row, int col){
-		return grid.get(row).get(col).temp;
+		return grid.get(row).get(col).getTemp();
 	}
 	
 	/**
@@ -263,7 +271,7 @@ public class ObjectPlate implements Plate {
 	 * @return
 	 */
 	public double getBottom() {
-		return bottom.temp;
+		return bottom.getTemp();
 	}
         /**
          * 
@@ -284,21 +292,21 @@ public class ObjectPlate implements Plate {
 	 * @return
 	 */
 	public double getTop() {
-		return top.temp;
+		return top.getTemp();
 	}
 	/**
 	 * 
 	 * @return
 	 */
 	public double getRight() {
-		return right.temp;
+		return right.getTemp();
 	}
 	/**
 	 * 
 	 * @return
 	 */
 	public double getLeft() {
-		return left.temp;
+		return left.getTemp();
 	}
 	/**
 	 * 
@@ -310,53 +318,53 @@ public class ObjectPlate implements Plate {
 	
 	
 	
-	/**
-	 * GridpObject Class
-	 * @author tlaurent
-	 *
-	 */
-	class GridObj{
-		
-		GridObj ln; // coordinate neighbors
-		GridObj rn;
-		GridObj un;
-		GridObj dn;
-		private double temp;
-		
-		/**
-		 * Constructor
-		 * @param temp
-		 */
-		public GridObj( double temp ) {
-			this.temp=temp;
-		}
-		
-		/**
-		 * return the average of the neighboring temps
-		 * @return
-		 */
-		public double averageTemp(){
-			return (ln.temp + rn.temp + un.temp + dn.temp)/4.0;
-		}
-		
-		/**
-		 * rteurns current temp 
-		 * @return
-		 */
-		public double getTemp(){
-			return temp;
-		}
-		
-		/**
-		 * sets temp of grid obj
-		 * 
-		 * @param temp
-		 */
-		public void setTemp(double temp){
-			this.temp = temp;
-		}
-		
-	}
+//	/**
+//	 * GridpObject Class
+//	 * @author tlaurent
+//	 *
+//	 */
+//	class GridObj{
+//		
+//		GridObj ln; // coordinate neighbors
+//		GridObj rn;
+//		GridObj un;
+//		GridObj dn;
+//		private double temp;
+//		
+//		/**
+//		 * Constructor
+//		 * @param temp
+//		 */
+//		public GridObj( double temp ) {
+//			this.temp=temp;
+//		}
+//		
+//		/**
+//		 * return the average of the neighboring temps
+//		 * @return
+//		 */
+//		public double averageTemp(){
+//			return (ln.temp + rn.temp + un.temp + dn.temp)/4.0;
+//		}
+//		
+//		/**
+//		 * rteurns current temp 
+//		 * @return
+//		 */
+//		public double getTemp(){
+//			return temp;
+//		}
+//		
+//		/**
+//		 * sets temp of grid obj
+//		 * 
+//		 * @param temp
+//		 */
+//		public void setTemp(double temp){
+//			this.temp = temp;
+//		}
+//		
+//	}
 	
 
 }
