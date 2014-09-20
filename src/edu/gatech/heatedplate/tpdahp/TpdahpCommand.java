@@ -47,6 +47,7 @@ public class TpdahpCommand implements Command {
                                          doublePlate.getTop(),
                                          doublePlate.getBottom()) ;
 	
+		newDoublePlate.numIterations = 0;
 		
 	}
 
@@ -57,18 +58,18 @@ public class TpdahpCommand implements Command {
 	   {
 		   
 	     int d = oldDoublePlate.getDimension();
-	 	
+	     newDoublePlate.numIterations++;
 	     for (int row = 1; row <= d; row++)
             {
 	    	 newDoublePlate.numIterations++;
    	     	 for (int col = 1; col <= d; col++ )
    	            {
-     	    	  newDoublePlate.mPlateValues[row][col] = ( oldDoublePlate.mPlateValues[row + 1] [col]  + 
-     		                                                oldDoublePlate.mPlateValues[row - 1] [col]  +
-     		                                                oldDoublePlate.mPlateValues[row] [col +1]   +
-     		                                                oldDoublePlate.mPlateValues[row] [col - 1]) / 4.0;
+     	    	  newDoublePlate.getmPlateValues()[row][col] = ( oldDoublePlate.getmPlateValues()[row + 1] [col]  + 
+     		                                                oldDoublePlate.getmPlateValues()[row - 1] [col]  +
+     		                                                oldDoublePlate.getmPlateValues()[row] [col +1]   +
+     		                                                oldDoublePlate.getmPlateValues()[row] [col - 1]) / 4.0;
      	    	  
-     	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] -  oldDoublePlate.mPlateValues[row][col];
+     	    	 tempPercisionDelta = newDoublePlate.getmPlateValues()[row][col] -  oldDoublePlate.getmPlateValues()[row][col];
      	    	  
      	    	//  if( tempPercisionDelta   <= percisionThreshold)
      	    	//	  break;

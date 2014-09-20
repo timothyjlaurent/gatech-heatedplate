@@ -9,15 +9,15 @@ public class TpdohpCommand implements Command {
 	private ObjectPlate newPlate;
 
 
-	public TpdohpCommand(ObjectPlate op){
+	public TpdohpCommand(ObjectPlate heatedPlate){
 		iteration = 0 ;
-		newPlate = new ObjectPlate(op.getWidth(), op.getHeight(), 
-				op.getTop().getTemp(), op.getRight().getTemp(), op.getBottom().getTemp(), op.getLeft().getTemp());
+		newPlate = new ObjectPlate  (heatedPlate.getWidth(), heatedPlate.getHeight(), 
+				heatedPlate.getTop().getTemp(), heatedPlate.getRight().getTemp(), heatedPlate.getBottom().getTemp(), heatedPlate.getLeft().getTemp());
 	}
 
 
 	public ObjectPlate execute(ObjectPlate oldPlate){
-		newPlate = new ObjectPlate(oldPlate.getWidth(), oldPlate.getHeight(), 
+		newPlate = new ObjectPlate (oldPlate.getWidth(), oldPlate.getHeight(), 
 				oldPlate.getTop().getTemp(), oldPlate.getRight().getTemp(), oldPlate.getBottom().getTemp(), oldPlate.getLeft().getTemp());
 		int height = oldPlate.getHeight();
 		int width = oldPlate.getWidth();
@@ -27,7 +27,7 @@ public class TpdohpCommand implements Command {
 		for( int row = 0 ; row < height ; row += 1 ){
 			for( int col = 0 ; col < width ; col += 1  ){
 				newPlate.setGrid(row , col, oldPlate.getNextTemp(row, col));
-				double delta = getDelta(oldPlate, row , col );
+   				double delta = getDelta(oldPlate, row , col );
 				if( Math.abs( delta ) > maxDelta ){
 					this.maxDelta = Math.abs(delta);
 				}

@@ -46,7 +46,7 @@ public class TpfahpCommand implements Command {
                                          floatPlate.getRight(),
                                          floatPlate.getTop(),
                                          floatPlate.getBottom()) ;
-	
+		 newFloatPlate.numIterations = 0; 
 		
 	}
 
@@ -57,10 +57,11 @@ public class TpfahpCommand implements Command {
 	   {
 		   
 	     int d = oldFloatPlate.getDimension();
+	     newFloatPlate.numIterations++;
 	 	
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newFloatPlate.numIterations++;
+	    	
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 

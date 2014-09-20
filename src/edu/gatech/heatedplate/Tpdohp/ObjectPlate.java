@@ -35,6 +35,8 @@ public class ObjectPlate implements Plate {
 	}
 	
 	
+	
+	
 	public ObjectPlate(Integer width, Integer height, Double top, Double right , Double bottom , Double left){
 		this.width = width;
 		this.height = height;

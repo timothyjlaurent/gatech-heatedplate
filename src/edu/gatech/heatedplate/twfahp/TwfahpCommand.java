@@ -46,7 +46,7 @@ public class TwfahpCommand implements Command {
                                          FloatPlate.getRight(),
                                          FloatPlate.getTop(),
                                          FloatPlate.getBottom()) ;
-	
+		newFloatPlate.numIterations = 0;
 		
 	}
 
@@ -57,19 +57,19 @@ public class TwfahpCommand implements Command {
 	   {
 		   
 	     int d = oldFloatPlate.getDimension();
-	 
+	     newFloatPlate.numIterations++;
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newFloatPlate.numIterations++;
+	    	 
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
    	     		 
    	     		
    	     		newFloatPlate.mPlateValues[row][col]  =   new Float((oldFloatPlate.mPlateValues[row + 1] [col]  + 
-     		                                                     oldFloatPlate.mPlateValues[row - 1] [col]  +
-     		                                                     oldFloatPlate.mPlateValues[row] [col +1]   +
-     		                                                     oldFloatPlate.mPlateValues[row] [col - 1])/4.00f);
+     		                                                         oldFloatPlate.mPlateValues[row - 1] [col]  +
+     		                                                         oldFloatPlate.mPlateValues[row] [col +1]   +
+     		                                                         oldFloatPlate.mPlateValues[row] [col - 1])/4.00f);
    	     		                            
    	     		                         
    	    	  
