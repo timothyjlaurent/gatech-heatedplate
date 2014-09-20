@@ -6,12 +6,8 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import edu.gatech.heatedplate.common.Plate;
-import edu.gatech.heatedplate.Tpdohp.TpdohpCommand;
-import edu.gatech.heatedplate.Tpdohp.ObjectPlate;
 
-import static edu.gatech.heatedplate.Gallhp.ViewConstant.*;
-
+import edu.gatech.heatedplate.Gallhp.HeatedPlateFrame;
 
 /**  
  * <h1> Project 1: Heated Plate GUI Implementation</h1> 
@@ -32,50 +28,17 @@ import static edu.gatech.heatedplate.Gallhp.ViewConstant.*;
  * @see ObjectPlate
  * @see Plate 
 */ 
-public class Demo extends JFrame  {
+public class Demo {
 
 	public Demo() {
 	
-    }
-    
-	/*
-	 *  Initialize the frame with necessary size and characteristics
-	 *
-	*/
-	public void initFrame() {
-		
-		int frameHeight = FRAME_HEIGHT;
-		int frameWidth = FRAME_WIDTH;
-		
-		try {
-			Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-			
-			if ((screenSize.width > 0) &&
-				(screenSize.height > 0)) {
-				
-				frameWidth = (screenSize.width > FRAME_DESKTOP_BORDER_GAP)?
-								(screenSize.width - FRAME_DESKTOP_BORDER_GAP):screenSize.width;
-								
-				frameHeight = (screenSize.height > FRAME_DESKTOP_BORDER_GAP)?
-								(screenSize.height - FRAME_DESKTOP_BORDER_GAP):screenSize.width;
-			}
-		} catch (Exception exception) {
-			// Do Nothing, We have the Frame default size
-		}
-		
-		setTitle(APPLICATION_NAME);
-		setSize(frameWidth, frameHeight);	    
-	    setLocationRelativeTo(null);	    
-	    setResizable(false);	    
-	    setExtendedState(JFrame.MAXIMIZED_BOTH);
-	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+    }    
 	
     public static void main(String[] args) {
     	SwingUtilities.invokeLater(new Runnable() {
     	    @Override
     	    public void run() {
-    	    	Demo heatedPlateFrame = new Demo();
+    	    	HeatedPlateFrame heatedPlateFrame = new HeatedPlateFrame();
     	    	heatedPlateFrame.initFrame();
     	    	heatedPlateFrame.setVisible(true);
     	    }
