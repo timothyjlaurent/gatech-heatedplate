@@ -55,7 +55,7 @@ public class HeatedPlateResultPanel extends JPanel {
         if (initColor) {
         	aGraphics.setColor(new Color((float) Math.random(), 0.f, 0.f));
         } else {
-        	aGraphics.setColor(new Color((float)color[row][col]/90, 0.f, 0.f));
+        	aGraphics.setColor(new Color((float)color[row][col]/100, 0.f, 0.f));
         }
         
         
