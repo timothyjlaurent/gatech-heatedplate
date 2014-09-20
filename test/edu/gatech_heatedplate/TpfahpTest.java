@@ -12,7 +12,7 @@ public class TpfahpTest {
 	@Test
 	public void testfloat() {
 		
-		  TpfahpPlate heatedPlate = new TpfahpPlate(100, 120.0f,300.23f,45.122f,57.87f);
+		  TpfahpPlate heatedPlate = new TpfahpPlate(1000, 120.0f,300.23f,45.122f,57.87f);
 	      TpfahpCommand tpfahp = new TpfahpCommand(heatedPlate);
 	      
 	 

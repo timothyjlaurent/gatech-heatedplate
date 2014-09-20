@@ -25,6 +25,8 @@ import edu.gatech.heatedplate.tpdahp.TpdahpCommand;
 import edu.gatech.heatedplate.tpdahp.TpdahpPlate;
 import edu.gatech.heatedplate.tpfahp.TpfahpCommand;
 import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
+import edu.gatech.heatedplate.twfahp.TwfahpCommand;
+import edu.gatech.heatedplate.twfahp.TwfahpPlate;
 
 public class Invoker {
 	
@@ -49,7 +51,7 @@ public class Invoker {
 	             
 	                 // array of Float wrapper class
 	                 case "TWFAHP":
-		             CmdObj = new TpfahpCommand((TpfahpPlate)invkerPlate);
+		             CmdObj = new TwfahpCommand((TwfahpPlate)invkerPlate);
 		             break;
 	             
 		             // object implentation without array

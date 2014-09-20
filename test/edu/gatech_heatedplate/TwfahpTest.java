@@ -12,7 +12,7 @@ public class TwfahpTest {
 	@Test
 	public void testFloat() {
 		
-		  TwfahpPlate heatedPlate = new TwfahpPlate(100, 120.0f, 300.23f, 45.122f, 57.87f);
+		  TwfahpPlate heatedPlate = new TwfahpPlate(1000, 1200.7687760f, 300.2787683f, 4566.122f, 58.877876767f);
 	      TwfahpCommand twfahp = new TwfahpCommand(heatedPlate);
 	      
 	 
@@ -24,7 +24,7 @@ public class TwfahpTest {
 	      
 	      System.out.println("Number of Iterations=" + heatedPlate.numIterations);
 	      heatedPlate.DisplpayPlateTemp();
-		assertTrue("1 million Iterations",heatedPlate.numIterations >1000000 );
+		assertTrue("1 million Iterations",heatedPlate.numIterations >1000000);
 	}
 
 }
