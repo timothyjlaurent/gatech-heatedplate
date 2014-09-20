@@ -61,7 +61,7 @@ public class TpdahpCommand implements Command {
 	     newDoublePlate.numIterations++;
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newDoublePlate.numIterations++;
+	    	
    	     	 for (int col = 1; col <= d; col++ )
    	            {
      	    	  newDoublePlate.getmPlateValues()[row][col] = ( oldDoublePlate.getmPlateValues()[row + 1] [col]  + 
@@ -81,18 +81,22 @@ public class TpdahpCommand implements Command {
 	    return newDoublePlate;
 	  }
 
-	@Override
-	public Plate execute(Plate plate) {
-	 //TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	public double getPercision()
 	  {
 		return tempPercisionDelta;
 		
 	  }
-	
+	public int getIteration(){
+		return newDoublePlate.numIterations ;	
+	}
+
+	@Override
+	public Plate execute(Plate plate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

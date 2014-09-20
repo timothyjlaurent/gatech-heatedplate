@@ -98,6 +98,8 @@ public class TwfahpCommand implements Command {
 		
 	  }
 	
-	
+	public int getIteration(){
+		return newFloatPlate.numIterations ;	
+	}
 
 }

@@ -94,6 +94,8 @@ public class TpfahpCommand implements Command {
 		
 	  }
 	
-	
+	public int getIteration(){
+		return newFloatPlate.numIterations ;	
+	}
 
 }
