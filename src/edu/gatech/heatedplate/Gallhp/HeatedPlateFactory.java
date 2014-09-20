@@ -27,41 +27,44 @@ public class HeatedPlateFactory {
 									Double topEdgeTemperature,
 									Double bottomEdgeTemperature) {
 		Plate plate = null;
-        
-		switch (plateCommandType) {
-        case PLATE_COMMAND_TYPE_TPDAHP:
-        	plate = new TpdahpPlate(dimension.intValue(), 
-        							leftEdgeTemperature.doubleValue(), 
-        							rightEdgeTemperature.doubleValue(), 
-        							topEdgeTemperature.doubleValue(), 
-        							bottomEdgeTemperature.doubleValue());
-            break; 
-        case PLATE_COMMAND_TYPE_TPFAHP:
-        	plate = new TpfahpPlate(dimension.intValue(), 
-									leftEdgeTemperature.floatValue(), 
-									rightEdgeTemperature.floatValue(), 
-									topEdgeTemperature.floatValue(), 
-									bottomEdgeTemperature.floatValue());
-            break;
-        case PLATE_COMMAND_TYPE_TWFAHP:
-        	plate = new TwfahpPlate(dimension.intValue(), 
-									leftEdgeTemperature.floatValue(), 
-									rightEdgeTemperature.floatValue(), 
-									topEdgeTemperature.floatValue(), 
-									bottomEdgeTemperature.floatValue());
-            break;
-        case PLATE_COMMAND_TYPE_TPDOHP:
-        	plate = new ObjectPlate(dimension, 
-				        			dimension,
-									leftEdgeTemperature, 
-									rightEdgeTemperature, 
-									topEdgeTemperature, 
-									bottomEdgeTemperature);
-            break;
- 
-        default:
-            break;
-        }
+        try {
+			switch (plateCommandType) {
+		        case PLATE_COMMAND_TYPE_TPDAHP:
+		        	plate = new TpdahpPlate(dimension.intValue(), 
+		        							leftEdgeTemperature.doubleValue(), 
+		        							rightEdgeTemperature.doubleValue(), 
+		        							topEdgeTemperature.doubleValue(), 
+		        							bottomEdgeTemperature.doubleValue());
+		            break; 
+		        case PLATE_COMMAND_TYPE_TPFAHP:
+		        	plate = new TpfahpPlate(dimension.intValue(), 
+											leftEdgeTemperature.floatValue(), 
+											rightEdgeTemperature.floatValue(), 
+											topEdgeTemperature.floatValue(), 
+											bottomEdgeTemperature.floatValue());
+		            break;
+		        case PLATE_COMMAND_TYPE_TWFAHP:
+		        	plate = new TwfahpPlate(dimension.intValue(), 
+											leftEdgeTemperature.floatValue(), 
+											rightEdgeTemperature.floatValue(), 
+											topEdgeTemperature.floatValue(), 
+											bottomEdgeTemperature.floatValue());
+		            break;
+		        case PLATE_COMMAND_TYPE_TPDOHP:
+		        	plate = new ObjectPlate(dimension, 
+						        			dimension,
+											leftEdgeTemperature, 
+											rightEdgeTemperature, 
+											topEdgeTemperature, 
+											bottomEdgeTemperature);
+		            break;
+		 
+		        default:
+		        	throw new IllegalArgumentException("Invalid Plate Command Type");
+	        }
+		} catch (Exception exception) {
+			throw exception;
+		}
 		
         return plate;
 	}
@@ -69,25 +72,30 @@ public class HeatedPlateFactory {
 	public static Command createCommand(PlateCommandType plateCommandType,
 										Plate plate) {
 		Command command = null;
-        
-		if (plate != null) {
+		try { 
+			if (plate == null) {
+				throw new IllegalArgumentException("Null Plate Object");
+			}
+			
 			switch (plateCommandType) {
-	        case PLATE_COMMAND_TYPE_TPDAHP:
-	        	command = new TpdahpCommand((TpdahpPlate)plate);
-	            break; 
-	        case PLATE_COMMAND_TYPE_TPFAHP:
-	        	command = new TpfahpCommand((TpfahpPlate)plate);
-	            break;
-	        case PLATE_COMMAND_TYPE_TWFAHP:
-	        	command = new TwfahpCommand((TwfahpPlate)plate);
-	            break;
-	        case PLATE_COMMAND_TYPE_TPDOHP:
-	        	command = new TpdohpCommand((ObjectPlate)plate);
-	            break;
-	 
-	        default:
-	            break;
-	        }
+		        case PLATE_COMMAND_TYPE_TPDAHP:
+		        	command = new TpdahpCommand((TpdahpPlate)plate);
+		            break; 
+		        case PLATE_COMMAND_TYPE_TPFAHP:
+		        	command = new TpfahpCommand((TpfahpPlate)plate);
+		            break;
+		        case PLATE_COMMAND_TYPE_TWFAHP:
+		        	command = new TwfahpCommand((TwfahpPlate)plate);
+		            break;
+		        case PLATE_COMMAND_TYPE_TPDOHP:
+		        	command = new TpdohpCommand((ObjectPlate)plate);
+		            break;	 
+		        default:
+		        	throw new IllegalArgumentException("Invalid Plate Command Type");
+		    }
+			
+		} catch (Exception exception) {
+			throw exception;
 		}
 		
         return command;

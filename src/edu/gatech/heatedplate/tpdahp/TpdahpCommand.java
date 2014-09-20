@@ -57,10 +57,10 @@ public class TpdahpCommand implements Command {
 	   {
 		   
 	     int d = oldDoublePlate.getDimension();
-	 	
+	     newDoublePlate.numIterations++;
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newDoublePlate.numIterations++;
+	    	
    	     	 for (int col = 1; col <= d; col++ )
    	            {
      	    	  newDoublePlate.mPlateValues[row][col] = ( oldDoublePlate.mPlateValues[row + 1] [col]  + 

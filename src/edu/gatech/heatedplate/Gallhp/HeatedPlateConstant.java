@@ -6,6 +6,9 @@ public class HeatedPlateConstant {
 	public static final int FRAME_HEIGHT = 500;
 	public static final int FRAME_WIDTH = 500;
 	public static final int FRAME_DESKTOP_BORDER_GAP = 100;
+	public static final int PANEL_FRAME_BORDER_GAP = 25;
+	public static final int PANEL_GRID_BORDER_GAP = 10;
+	public static final int CONTROL_PANEL_WIDTH = 170;
 	
 	public static enum PlateCommandType {
     	PLATE_COMMAND_TYPE_TPDAHP(0),
