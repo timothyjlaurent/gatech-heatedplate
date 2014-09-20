@@ -31,6 +31,27 @@ public class TpfahpCommand implements Command {
 	private float tempPercisionDelta = 1.0f ;
 	private float percisionThreshold = 0.01f;
 	private TpfahpPlate newFloatPlate ;
+	private float maxDelta ;
+	
+	
+	
+	/**
+	 * 
+	 */
+	public TpfahpCommand(TpfahpPlate floatPlate, boolean initialize) {
+		
+		
+		maxDelta = 0;
+		newFloatPlate = new TpfahpPlate(floatPlate.getDimension(),
+                                         floatPlate.getLeft(),
+                                         floatPlate.getRight(),
+                                         floatPlate.getTop(),
+                                         floatPlate.getBottom()) ;
+	
+		if(initialize){
+			newFloatPlate.resetIterations();
+		}
+	}
 	
 	
 	
@@ -40,13 +61,14 @@ public class TpfahpCommand implements Command {
 	public TpfahpCommand(TpfahpPlate floatPlate) {
 		
 
-		
+		maxDelta = 0;
 		newFloatPlate = new TpfahpPlate(floatPlate.getDimension(),
                                          floatPlate.getLeft(),
                                          floatPlate.getRight(),
                                          floatPlate.getTop(),
                                          floatPlate.getBottom()) ;
-	
+		newFloatPlate.resetIterations();
+
 		
 	}
 
@@ -55,12 +77,11 @@ public class TpfahpCommand implements Command {
 	 */
 	public TpfahpPlate execute(TpfahpPlate oldFloatPlate)
 	   {
-		   
+		maxDelta = 0;
+		TpfahpPlate newFloatPlate = new TpfahpPlate(oldFloatPlate);
 	     int d = oldFloatPlate.getDimension();
-	 	
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newFloatPlate.numIterations++;
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
@@ -74,6 +95,11 @@ public class TpfahpCommand implements Command {
      	   // 	  if( tempPercisionDelta   <= percisionThreshold)
      	   // 		  continue;
      	    		  
+     	    	  float delta =  newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
+   	              if( delta > maxDelta ){
+   	            	  maxDelta = delta;
+   	              }
+     	    	  
    	            }
          	
     	    }
@@ -92,6 +118,10 @@ public class TpfahpCommand implements Command {
 		return tempPercisionDelta;
 		
 	  }
+	
+	public double getMaxDelta(){
+		return (double)maxDelta;
+	}
 	
 	
 

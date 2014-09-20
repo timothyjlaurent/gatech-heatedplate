@@ -34,6 +34,34 @@ public class TpdahpPlate implements Plate {
         setEdgeValues(d);
   
 	  }
+
+	public TpdahpPlate( TpdahpPlate doublePlate) 
+	  {
+	  numIterations++;     // static counter for number of instantiated iterations 
+	  int d = doublePlate.getDimension();
+      double l = doublePlate.getLeft();
+      double r = doublePlate.getRight();
+      double t = doublePlate.getTop();
+      double b = doublePlate.getBottom();
+	  
+	  mPlateValues      = new double[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+      mLeft             = l;
+      mRight            = r;
+      mTop              = t;
+      mBottom           = b;
+      mDim              = d;
+      setEdgeValues(d);
+
+	  }
+	
+	
+	
+	
+	
+	
+	public void resetIterations(){
+		numIterations = 0 ; 
+	}
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice

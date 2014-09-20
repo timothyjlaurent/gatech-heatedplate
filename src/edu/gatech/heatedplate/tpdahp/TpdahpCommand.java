@@ -32,7 +32,26 @@ public class TpdahpCommand implements Command {
 	private double percisionThreshold = .01;
 	private TpdahpPlate newDoublePlate ;
 	//private TpdahpPlate oldDoublePlate ;
+	private double maxDelta;
 	
+	
+	/**
+	 * 
+	 */
+	public TpdahpCommand(TpdahpPlate doublePlate, boolean initialize) {
+		
+
+		
+		newDoublePlate = new TpdahpPlate(doublePlate.getDimension(),
+                                         doublePlate.getLeft(),
+                                         doublePlate.getRight(),
+                                         doublePlate.getTop(),
+                                         doublePlate.getBottom()) ;
+		maxDelta = 0.0;
+		if(initialize){
+			newDoublePlate.resetIterations();
+		}
+	}
 	
 	/**
 	 * 
@@ -46,21 +65,30 @@ public class TpdahpCommand implements Command {
                                          doublePlate.getRight(),
                                          doublePlate.getTop(),
                                          doublePlate.getBottom()) ;
-	
-		
+		maxDelta = 0.0;
+		newDoublePlate.resetIterations();
 	}
 
+	
+	
+	
+	
+	
 	/* (non-Javadoc)
 	 * @see edu.gatech.heatedplate.command.Command#execute()
 	 */
 	public TpdahpPlate execute(TpdahpPlate oldDoublePlate)
 	   {
-		   
+		 
+		 maxDelta = 0.0;
 	     int d = oldDoublePlate.getDimension();
 	 	
+	     newDoublePlate = new TpdahpPlate(oldDoublePlate); 
+	     
+	     
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newDoublePlate.numIterations++;
+	    
    	     	 for (int col = 1; col <= d; col++ )
    	            {
      	    	  newDoublePlate.mPlateValues[row][col] = ( oldDoublePlate.mPlateValues[row + 1] [col]  + 
@@ -68,8 +96,11 @@ public class TpdahpCommand implements Command {
      		                                                oldDoublePlate.mPlateValues[row] [col +1]   +
      		                                                oldDoublePlate.mPlateValues[row] [col - 1]) / 4.0;
      	    	  
-     	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] -  oldDoublePlate.mPlateValues[row][col];
+     	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] - oldDoublePlate.mPlateValues[row][col];
      	    	  
+     	    	 if(Math.abs(tempPercisionDelta) > maxDelta){
+     	    		 maxDelta = Math.abs(tempPercisionDelta);
+     	    	 }
      	    	//  if( tempPercisionDelta   <= percisionThreshold)
      	    	//	  break;
      	    		  
@@ -91,6 +122,10 @@ public class TpdahpCommand implements Command {
 		return tempPercisionDelta;
 		
 	  }
+	
+	public double getMaxDelta(){
+		return maxDelta;
+	}
 	
 	
 

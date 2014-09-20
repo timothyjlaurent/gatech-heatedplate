@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;
+import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
 
 public class TwfahpPlate implements Plate {
 
@@ -12,7 +13,7 @@ public class TwfahpPlate implements Plate {
     private Float      mTop;
     private Float      mBottom; 
 	public  Float[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
-	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
+	public  int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
 	/* concrete plate constructor for Tpdahp plate 
@@ -34,6 +35,31 @@ public class TwfahpPlate implements Plate {
         setEdgeValues(d);
   
 	  }
+	
+	
+	public TwfahpPlate( TwfahpPlate doublePlate) 
+	  {
+	  this.numIterations = doublePlate.numIterations+1;     // static counter for number of instantiated iterations 
+	  int d = doublePlate.getDimension();
+  Float l = doublePlate.getLeft();
+  Float r = doublePlate.getRight();
+  Float t = doublePlate.getTop();
+  Float b = doublePlate.getBottom();
+	  
+	  mPlateValues      = new Float[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+  mLeft             = l;
+  mRight            = r;
+  mTop              = t;
+  mBottom           = b;
+  mDim              = d;
+  setEdgeValues(d);
+
+	  }
+
+	public void resetIterations(){
+		numIterations = 0 ; 
+	}
+	
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice

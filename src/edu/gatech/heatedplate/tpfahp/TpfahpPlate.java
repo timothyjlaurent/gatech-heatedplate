@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;
+import edu.gatech.heatedplate.tpdahp.TpdahpPlate;
 
 public class TpfahpPlate implements Plate {
 
@@ -34,6 +35,31 @@ public class TpfahpPlate implements Plate {
         setEdgeValues(d);
   
 	  }
+
+	
+	public TpfahpPlate( TpfahpPlate doublePlate) 
+	  {
+	  numIterations++;     // static counter for number of instantiated iterations 
+	  int d = doublePlate.getDimension();
+    float l = doublePlate.getLeft();
+    float r = doublePlate.getRight();
+    float t = doublePlate.getTop();
+    float b = doublePlate.getBottom();
+	  
+	  mPlateValues      = new float[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+    mLeft             = l;
+    mRight            = r;
+    mTop              = t;
+    mBottom           = b;
+    mDim              = d;
+    setEdgeValues(d);
+
+	  }
+	
+	
+	public void resetIterations(){
+		numIterations = 0 ; 
+	}
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice

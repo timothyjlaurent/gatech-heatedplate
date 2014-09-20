@@ -31,6 +31,25 @@ public class TwfahpCommand implements Command {
 	private Float tempPercisionDelta = 1.0f ;
 	private Float percisionThreshold = 0.01f;
 	private TwfahpPlate newFloatPlate ;
+	private double maxDelta;
+	
+	
+	public TwfahpCommand(TwfahpPlate FloatPlate, boolean initialize) {
+		
+
+		
+		newFloatPlate = new TwfahpPlate(FloatPlate.getDimension(),
+                                         FloatPlate.getLeft(),
+                                         FloatPlate.getRight(),
+                                         FloatPlate.getTop(),
+                                         FloatPlate.getBottom()) ;
+		if( initialize ){
+			FloatPlate.resetIterations();
+		}
+		
+	}
+	
+	
 	
 	
 	
@@ -46,6 +65,7 @@ public class TwfahpCommand implements Command {
                                          FloatPlate.getRight(),
                                          FloatPlate.getTop(),
                                          FloatPlate.getBottom()) ;
+		FloatPlate.resetIterations();
 	
 		
 	}
@@ -57,10 +77,12 @@ public class TwfahpCommand implements Command {
 	   {
 		   
 	     int d = oldFloatPlate.getDimension();
-	 
+	     maxDelta = 0.0;
+    	 newFloatPlate = new TwfahpPlate(oldFloatPlate);
+	     
 	     for (int row = 1; row <= d; row++)
             {
-	    	 newFloatPlate.numIterations++;
+
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
@@ -74,8 +96,10 @@ public class TwfahpCommand implements Command {
    	     		                         
    	    	  
      	     //if ((newFloatPlate.numIterations > (d+2 * d+2) ) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
-     	    //	 tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
-     	    	  
+     	     tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
+     	    if ( tempPercisionDelta > maxDelta){
+     	    	maxDelta = tempPercisionDelta;
+     	    }
      	    //	  if( tempPercisionDelta   <= percisionThreshold)
      	   // 		  break rowloop ;
      	    		  
@@ -98,6 +122,9 @@ public class TwfahpCommand implements Command {
 		
 	  }
 	
+	public double getMaxDelta(){
+		return (double)maxDelta;
+	}	
 	
 
 }
