@@ -17,7 +17,7 @@ package edu.gatech.heatedplate.common;
 	 * 
 	 * @see Command 
 	 * @see Plate
-     * @see  
+     * @see tpdahpCommand 
 	 */ 
 import edu.gatech.heatedplate.Tpdohp.ObjectPlate;
 import edu.gatech.heatedplate.Tpdohp.TpdohpCommand;
