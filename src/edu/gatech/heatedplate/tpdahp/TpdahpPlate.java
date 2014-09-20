@@ -108,7 +108,7 @@ public class TpdahpPlate implements Plate {
 	public int  getDimension() {
 		return mDim;
 	}
-
+	
 	public void DisplpayPlateTemp()
 	  {
 		for (int row = 1; row <= this.getDimension(); row++)
@@ -121,5 +121,12 @@ public class TpdahpPlate implements Plate {
 	    }
 	  }
 	
+	public void intializePlate() {
+		
+	}
+	
+	public double[][] toArray(){
+		return mPlateValues;
+	}
 
 }

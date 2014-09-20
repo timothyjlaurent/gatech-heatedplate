@@ -44,6 +44,10 @@ public class HeatedPlateFrame extends JFrame  {
 		return heatedPlateController;
 	}
 	
+	public HeatedPlateResultPanel getHeatedPlateResultPanel() {
+		return heatedPlateResultPanel;
+	}
+	
 	private void setFrameProperty() {
 		
 		frameHeight = FRAME_HEIGHT;
@@ -110,10 +114,8 @@ public class HeatedPlateFrame extends JFrame  {
 			
 			
 			if (heatedPlateController != null) {
-				//heatedPlateManager.initManager(this);
+				heatedPlateController.initController(this);
 			}
-			heatedPlateControlPanel = new HeatedPlateControlPanel();
-			heatedPlateController = new HeatedPlateController();
 			
 		} catch(Exception exception) {
 			return false;

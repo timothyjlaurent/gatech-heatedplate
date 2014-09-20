@@ -155,10 +155,10 @@ public class HeatedPlateControlPanel extends JPanel implements ActionListener {
         		if (heatedPlateController != null) {
         			heatedPlateController.initCommand(PlateCommandType.values()[comboBoxCommandType.getSelectedIndex()],
         											  Integer.valueOf(textFieldDimension.getText()),
-        											  Double.valueOf(textFieldTop.getText()),
-        											  Double.valueOf(textFieldBottom.getText()),
         											  Double.valueOf(textFieldLeft.getText()),
-        											  Double.valueOf(textFieldRight.getText()));
+        											  Double.valueOf(textFieldRight.getText()),
+        											  Double.valueOf(textFieldTop.getText()),
+        											  Double.valueOf(textFieldBottom.getText()));
         		}
         	}
         }

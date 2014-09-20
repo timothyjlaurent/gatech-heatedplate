@@ -80,18 +80,22 @@ public class TpdahpCommand implements Command {
 	    return newDoublePlate;
 	  }
 
-	@Override
-	public Plate execute(Plate plate) {
-	 //TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	public double getPercision()
 	  {
 		return tempPercisionDelta;
 		
 	  }
-	
+	public int getIteration(){
+		return newDoublePlate.numIterations ;	
+	}
+
+	@Override
+	public Plate execute(Plate plate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

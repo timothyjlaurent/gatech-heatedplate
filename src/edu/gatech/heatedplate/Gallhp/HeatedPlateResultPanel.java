@@ -23,25 +23,43 @@ public class HeatedPlateResultPanel extends JPanel {
 		
 		panelWidth = heatedPlateFrame.getWidth() - (CONTROL_PANEL_WIDTH + (2 * PANEL_FRAME_BORDER_GAP));
 		panelHeight = heatedPlateFrame.getHeight();
-		
+		initColor = true;
 		return true;
 	}
 	
+	 public void initDisplay(int dimension) {
+		 this.dimension = dimension;
+		 initColor = true;
+		 this.repaint();
+	 }	 
+	 
+	 public void setDisplay(double[][] color) {
+		 this.color = color;
+		 initColor = false;
+		 this.repaint();
+	 }	 
+	 
 	 public Dimension getPreferredSize() {
 		 return new Dimension(panelWidth, panelHeight);
 	 }
 	  
     private void paintSpot(Graphics aGraphics, int row, int col, double t) {
-        int rowPos = PANEL_GRID_BORDER_GAP + row * panelHeight/5;
-        int colPos = PANEL_GRID_BORDER_GAP + col * panelWidth/5;
+        int rowPos = PANEL_GRID_BORDER_GAP + row * panelHeight/dimension;
+        int colPos = PANEL_GRID_BORDER_GAP + col * panelWidth/dimension;
 
         // Overwrite everything that was there previously
         aGraphics.setColor(Color.black);
-        aGraphics.fillRect(colPos, rowPos, panelWidth/5, panelHeight/5);
+        aGraphics.fillRect(colPos, rowPos, panelWidth/dimension, panelHeight/dimension);
         
         // Color in RGB format with green and blue values = 0.0
-        aGraphics.setColor(new Color((float) Math.random(), 0.f, 0.f));    
-        aGraphics.fillRect(colPos, rowPos, panelWidth/5, panelHeight/5);
+        if (initColor) {
+        	aGraphics.setColor(new Color((float) Math.random(), 0.f, 0.f));
+        } else {
+        	aGraphics.setColor(new Color((float)color[row][col]/90, 0.f, 0.f));
+        }
+        
+        
+        aGraphics.fillRect(colPos, rowPos, panelWidth/dimension, panelHeight/dimension);
     }
     
 	protected void paintComponent(Graphics aGraphics) {
@@ -52,8 +70,8 @@ public class HeatedPlateResultPanel extends JPanel {
         									 BufferedImage.TYPE_INT_ARGB);
         Graphics anotherGraphics = bi.createGraphics();
 
-        for (int i = 0; i < 5; i++)
-            for (int j = 0; j < 5; j++)
+        for (int i = 0; i < dimension; i++)
+            for (int j = 0; j < dimension; j++)
                 // Instead of calling random, here is where you
                 //   would insert the call that would provide
                 //   the temperature of the corresponding cell
@@ -66,4 +84,7 @@ public class HeatedPlateResultPanel extends JPanel {
 	private HeatedPlateFrame heatedPlateFrame;
 	private int panelWidth;
 	private int panelHeight;
+	private int dimension;
+	private double[][] color;
+	boolean initColor;
 }
