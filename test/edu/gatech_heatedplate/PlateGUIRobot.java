@@ -13,7 +13,7 @@ import java.awt.event.InputEvent;
  * @since 20-Sep-14 
  *  <br>  
  *  <p> 
- *  <p><B>Course      :</B> Software Dev Process 
+ *  <p><B>Course      :</B> Software Architecture and Design 
  *  <p><B>Section     :</B> CS-6310-O01  
  *  <p><B>Term        :</B> Fall 2014 
  *  <p><B>FileName    :</B> GUIRobot.java 
@@ -21,7 +21,7 @@ import java.awt.event.InputEvent;
  *  <p> <center><B> Project1  
  *  <p>  Junit test cases for Gallhp. 
  *  ,p>  This is a Java Robot wrapper class. It automates keyboard presses and mouse clicks of the Demo GUI 
- *  <p>   It is used to provide automated perfomance testing consistent with the other 4 packages. couldn;t decide whetehr to place in  test or  src, but ultimately decided it responsibility wise more test not application. oriented.    
+ *  <p>   It is used to provide automated performance testing consistent with the other 4 packages.    
  *  <p>   
  * 
  * @see test/invokerTest 

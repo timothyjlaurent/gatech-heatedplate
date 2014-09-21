@@ -31,8 +31,8 @@ public class InvokerTest {
 	public void setUp() throws Exception {
 	
 	invoke = new Invoker();
-	latSize = 1000;
-	itcnt  = 20000 ;
+	latSize = 100;
+	itcnt  = 100000 ;
 	}
 	
 	@Test
@@ -42,8 +42,6 @@ public class InvokerTest {
 		  heatedPlate = new TpfahpPlate(latSize, 120.0f,300.23f,45.122f,57.87f);
 		  TpfahpCommand tpfahp = (TpfahpCommand) invoke.setCommand("Tpfahp", heatedPlate);
 		 
-	     
-	 
 	      do{
            
 	        heatedPlate = tpfahp.execute((TpfahpPlate)heatedPlate);
@@ -138,11 +136,11 @@ public class InvokerTest {
 		
 		  
 	    
-          
+	}        
 	
 		
 		
-//	}
+
 	
 	
 	

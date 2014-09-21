@@ -1,6 +1,5 @@
 package edu.gatech.heatedplate.tpdahp;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;

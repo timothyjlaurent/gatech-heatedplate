@@ -57,7 +57,7 @@ public class TpdohpTest {
 		@Test
 		public void testobject100() {
 			
-			  ObjectPlate heatedPlate = new ObjectPlate(100, 100,  50.4, 60.0 , 70.44 , 33.3);
+			  ObjectPlate heatedPlate = new ObjectPlate(100, 100,  99.4, 6.076543 , 12.7777432333 , 33.3);
 			  heatedPlate.intializePlate();
 			  TpdohpCommand tpdohp = new TpdohpCommand(heatedPlate);
 		      heatedPlate.print();
