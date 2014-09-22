@@ -19,7 +19,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }
@@ -42,7 +42,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }
@@ -64,7 +64,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }
@@ -87,7 +87,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }
@@ -110,7 +110,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }
@@ -132,7 +132,7 @@ public class TpdohpTest {
 		 
 		      do{
 	               
-		        heatedPlate = tpdohp.execute(heatedPlate);
+		        heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
 //		        if (heatedPlate.getIteration() % 1000 == 0 ){
 //		        	heatedPlate.print();
 //		        }

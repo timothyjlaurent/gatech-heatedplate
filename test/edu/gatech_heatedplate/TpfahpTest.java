@@ -18,7 +18,7 @@ public class TpfahpTest {
 	 
 	      do{
                
-	        heatedPlate = tpfahp.execute(heatedPlate);
+	        heatedPlate = (TpfahpPlate) tpfahp.execute(heatedPlate);
 	      } while (heatedPlate.numIterations < 1000000);
 	     // }  while (tpfahp.getPercision() < 0.01f);
 	      

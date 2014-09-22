@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.gatech.heatedplate.common.Plate;
 import edu.gatech.heatedplate.tpdahp.TpdahpCommand;
 import edu.gatech.heatedplate.tpdahp.TpdahpPlate;
 
@@ -18,7 +19,7 @@ public class TpdahpTest {
 	 
 	      do{
                
-	        heatedPlate = tpdahp.execute(heatedPlate);
+	        heatedPlate = (TpdahpPlate) tpdahp.execute((Plate)heatedPlate);
 	      } while (heatedPlate.numIterations < 1000000);
 	     // }  while (tpfahp.getPercision() < 0.01f);
 	      
