@@ -41,17 +41,16 @@ public class HeatedPlateController {
 														 leftEdgeTemperature,
 														 rightEdgeTemperature,
 														 topEdgeTemperature,
-														 bottomEdgeTemperature); 
+														 bottomEdgeTemperature); */
 			
-			Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);*/
-			
-			TpdahpPlate plate = new TpdahpPlate(dimension,
+			Plate plate = new TpdahpPlate(dimension,
 												leftEdgeTemperature,
 												rightEdgeTemperature,
 												topEdgeTemperature,
 												bottomEdgeTemperature); 
 
-			TpdahpCommand command = new TpdahpCommand(plate);
+			Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);
+			//TpdahpCommand command = new TpdahpCommand(plate);
 			
 			  do{
 	              
