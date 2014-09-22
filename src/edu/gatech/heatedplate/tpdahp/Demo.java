@@ -1,5 +1,10 @@
 package edu.gatech.heatedplate.tpdahp;
 
+import edu.gatech.heatedplate.PlateCommon.PlateOptionObj;
+import edu.gatech.heatedplate.PlateCommon.PlateOptionParser;
+import edu.gatech.heatedplate.tpfahp.TpfahpCommand;
+import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
+
 /**  
 	 * @author Eric H. Griffin 
  	 * @version 1.0 
@@ -26,30 +31,31 @@ public class Demo {
 		
 	}
 
-	public static void main(String[] args)  throws Exception{
+	public static double deltaThreshold = .01;
+	
+	
+	public static void main(String[] args) throws Exception {
 		
 		try {
-		     // if (args.length <5)
-		    //	  throw new IllegalArgumentException("The wrong number of arguments have been supplied.");
-		      
-		      TpdahpPlate heatedPlate = new TpdahpPlate(100, 509.028397862,3022.23,4522.1278372,5732.87657354);
-		      TpdahpCommand tpdahp = new TpdahpCommand(heatedPlate);
-		      
-		 
-		      do{
-                   
-		        heatedPlate = tpdahp.execute(heatedPlate);	  
-		      }  while (true );
-		      
-		     } 	  
-		catch(Exception e)
-		     {
-               e.getMessage();			
-			
-		     }
-		      
+		PlateOptionObj oo =  PlateOptionParser.parseOptions(args);
 		
-
+		TpdahpPlate objP = new TpdahpPlate( oo.width, (float)oo.top, (float)oo.right, (float)oo.bottom, (float)oo.left);
+		// plate has zeros
+		objP.print();
+		TpdahpCommand tpdohp = new TpdahpCommand(objP);
+		do {
+			objP = (TpdahpPlate) tpdohp.execute(objP);
+			objP.print();
+		} 
+		
+		while ( tpdohp.getMaxDelta() > deltaThreshold  );
+		}
+		catch ( Exception e)
+		{
+		e.getMessage();
+		}
+	
+		
 	}
 
 }
