@@ -18,16 +18,20 @@ public class Demo {
 		try {
 		PlateOptionObj oo =  PlateOptionParser.parseOptions(args);
 		
-		Plate objP = new ObjectPlate( oo.width, oo.height, oo.top, oo.right, oo.bottom, oo.left);
-		((ObjectPlate)objP).intializePlate();
+
+		ObjectPlate objP = new ObjectPlate( oo.width, oo.height, oo.top, oo.right, oo.bottom, oo.left);
 		// plate has zeros
-		((ObjectPlate)objP).print();
+		objP.print();
 		TpdohpCommand tpdohp = new TpdohpCommand((ObjectPlate)objP);
 		do {
-			objP = tpdohp.execute(objP);
+			objP = (ObjectPlate) tpdohp.execute(objP);
 			((ObjectPlate)objP).print();
-		} while ( tpdohp.getMaxDelta() > deltaThreshold || tpdohp.getIteration() < 1000000 );
-		}
+		} while ( tpdohp.getMaxDelta() > deltaThreshold );
+			objP = (ObjectPlate) tpdohp.execute(objP);
+			objP.print();
+		} 
+		
+	
 		catch ( Exception e)
 		{
 		e.getMessage();

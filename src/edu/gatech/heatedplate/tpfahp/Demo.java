@@ -1,5 +1,9 @@
 package edu.gatech.heatedplate.tpfahp;
 
+import edu.gatech.heatedplate.PlateCommon.PlateOptionObj;
+import edu.gatech.heatedplate.PlateCommon.PlateOptionParser;
+import edu.gatech.heatedplate.Tpdohp.ObjectPlate;
+import edu.gatech.heatedplate.Tpdohp.TpdohpCommand;
 import edu.gatech.heatedplate.common.Plate;
 import edu.gatech.heatedplate.tpfahp.TpfahpCommand;
 import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
@@ -26,39 +30,33 @@ import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
  	*/ 
 public class Demo {
 
-	public Demo() {
-		
-	}
-
-	public static void main(String[] args)  throws Exception{
+	public static double deltaThreshold = .01;
+	
+	
+	public static void main(String[] args) throws Exception {
 		
 		try {
-		     // if (args.length <5)
-		    //	  throw new IllegalArgumentException("The wrong number of arguments have been supplied.");
-		     
-		      Plate heatedPlate = new TpfahpPlate(100, 120.0f,300.23f,45.122f,57.87f);
-		      TpfahpCommand tpfahp = new TpfahpCommand((TpfahpPlate)heatedPlate);
-		      
-		 
-		      do{
-                   
-		        heatedPlate = tpfahp.execute(heatedPlate);
-		      } while (((TpfahpPlate)heatedPlate).numIterations < 1000000);
-		     // }  while (tpfahp.getPercision() < 0.01f);
-		      
-		      System.out.println("Number of Iterations=" + ((TpfahpPlate)heatedPlate).numIterations);
-		      ((TpfahpPlate)heatedPlate).DisplpayPlateTemp();
-		      
-		      
-		     } 	  
-		catch(Exception e)
-		     {
-               e.getMessage();			
-			
-		     }
-		      
-		
 
+		PlateOptionObj oo =  PlateOptionParser.parseOptions(args);
+		
+		TpfahpPlate objP = new TpfahpPlate( oo.width, (float)oo.top, (float)oo.right, (float)oo.bottom, (float)oo.left);
+		// plate has zeros
+		objP.print();
+		TpfahpCommand tpdohp = new TpfahpCommand(objP);
+		do {
+			objP = (TpfahpPlate) tpdohp.execute(objP);
+			objP.print();
+		} 
+		
+		while ( tpdohp.getMaxDelta() > deltaThreshold  );
+		}
+		catch ( Exception e)
+		{
+		e.getMessage();
+		}
+	
+		
 	}
 
+	
 }

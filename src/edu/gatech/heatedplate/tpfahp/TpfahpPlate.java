@@ -1,5 +1,6 @@
 package edu.gatech.heatedplate.tpfahp;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -173,4 +174,58 @@ public class TpfahpPlate implements Plate {
 		return mPlateValues[row][col];
 		
 	}
+
+	/**
+	 * Converts the grid to a string
+	 * @return grid string
+	 */
+	public String gridToString(){
+		DecimalFormat df = new DecimalFormat("00.00");
+		String out = new String();
+		for( int row = 0 ; row < mDim ; row += 1){
+			for( int col = 0 ; col < mDim ; col += 1) {
+				out += df.format( mPlateValues[row][col] );
+				if ( col == mDim - 1 ){
+					out+= "\n";
+				} else {
+					out += "\t";
+				}
+			}
+		}  
+		out += "\n\n\n";
+		return out;
+	}
+	
+	/**
+	 * prints a header string
+	 * @return header string
+	 */
+	public String headerString() {
+		
+		DecimalFormat df = new DecimalFormat("00.00");
+		return "Iteration : " + numIterations 
+				+"\nEdge temps :" 
+				+"\nup : " + df.format(mTop) 
+				+"\nright : " + df.format(mRight) 
+				+"\ndown : " + df.format(mBottom) 
+				+"\nleft : " + df.format(mLeft) 
+				+ "\n\n"; 			
+	}
+	
+	/**
+	 * converts entire plate , header and grid to string
+	 * @return  plate string
+	 */
+	public String toString(){
+		return headerString() + gridToString();
+	}
+
+	/**
+	 * prints the plate
+	 */
+	public void print(){
+		System.out.println(this.toString());
+	}
+	
+	
 }
