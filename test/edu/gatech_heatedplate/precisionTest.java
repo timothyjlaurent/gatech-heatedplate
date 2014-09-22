@@ -21,9 +21,12 @@ public class precisionTest {
 	public void test() {
 		long time ;
 		Random rand = new Random(42);
-		
+		Runtime runtime = Runtime.getRuntime();
+		long mem;
+		long premem;
+		long postmem;
 		int[] size = {10,20, 50 ,100 };
-		double[] precision = {0.1, 0.01, 0.001, 0.0001, 0.00001 , 0.000001, 0.0000001 };
+		double[] precision = {0.1, 0.01, 0.001, 0.0001}; //, 0.00001 , 0.000001, 0.0000001 };
 		double[][] sides = {{
 			rand.nextDouble() * 100, rand.nextDouble() * 100, rand.nextDouble() * 100, rand.nextDouble() * 100
 		},
@@ -33,10 +36,12 @@ public class precisionTest {
 		}
 		};
 		
-		if(true	){
+		if( true ){
 		for ( int i = 0 ; i < size.length ; i += 1) {
 			for ( int j = 0  ; j < precision.length ; j+= 1){  
                 for ( int h = 0 ; h < sides.length; h += 1){
+                	runtime.gc();
+                	premem = runtime.totalMemory()-runtime.freeMemory();
                 	time = System.currentTimeMillis();
                 	double pre = precision[j];
                 	int d = size[i];
@@ -50,7 +55,8 @@ public class precisionTest {
                                
                 		heatedPlate = tpdohp.execute(heatedPlate);
         //		        if (heatedPlate.getIteration() % 1000 == 0 ){
-        //		        	heatedPlate.print();
+                		runtime.gc();
+                		postmem = runtime.totalMemory()-runtime.freeMemory();
         //		        }
                 	} while (tpdohp.getMaxDelta() > pre );//&& tpdohp.getMaxDelta() > 0.01);
                              // }  while (tpfahp.getPercision() < 0.01f);
@@ -59,6 +65,7 @@ public class precisionTest {
                              pre+"\t"+
                              heatedPlate.getIteration()+"\t"+
                              (System.currentTimeMillis()-time)+"\t"+
+                             premem+"\t" + postmem+"\t" +
                              s[0]+"\t"+s[1]+"\t"+s[2]+"\t"+s[3]);
        
         //		      System.out.println("Number of Iterations=" + tpdohp.getIteration());
@@ -73,6 +80,8 @@ public class precisionTest {
 			for ( int j = 0  ; j < precision.length ; j+= 1){  
                 for ( int h = 0 ; h < sides.length; h += 1){
                 	time = System.currentTimeMillis();
+                	runtime.gc();
+                	premem = runtime.totalMemory()-runtime.freeMemory();
                 	double pre = precision[j];
                 	int d = size[i];
                 	double[] s = sides[h];
@@ -84,6 +93,8 @@ public class precisionTest {
         	      do{
                        
         	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        runtime.gc();
+            		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
                 	 
                 System.out.println("tpdahp\t"+
@@ -91,6 +102,7 @@ public class precisionTest {
                              pre+"\t"+
                              heatedPlate.numIterations+"\t"+
                              (System.currentTimeMillis()-time)+"\t"+
+                             premem+"\t" + postmem+"\t" +
                              s[0]+"\t"+s[1]+"\t"+s[2]+"\t"+s[3]);
        
         //		      System.out.println("Number of Iterations=" + tpdohp.getIteration());
@@ -105,6 +117,8 @@ public class precisionTest {
 			for ( int j = 0  ; j < precision.length ; j+= 1){  
                 for ( int h = 0 ; h < sides.length; h += 1){
                 	time = System.currentTimeMillis();
+                	runtime.gc();
+                	premem = runtime.totalMemory()-runtime.freeMemory();
                 	double pre = precision[j];
                 	int d = size[i];
                 	double[] s = sides[h];
@@ -116,6 +130,8 @@ public class precisionTest {
         	      do{
                        
         	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        runtime.gc();
+            		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
                 	 
                 System.out.println("tpfahp\t"+
@@ -123,6 +139,7 @@ public class precisionTest {
                              pre+"\t"+
                              heatedPlate.numIterations+"\t"+
                              (System.currentTimeMillis()-time)+"\t"+
+                             premem+"\t" + postmem+"\t" +
                              s[0]+"\t"+s[1]+"\t"+s[2]+"\t"+s[3]);
        
         //		      System.out.println("Number of Iterations=" + tpdohp.getIteration());
@@ -138,6 +155,8 @@ public class precisionTest {
 			for ( int j = 0  ; j < precision.length ; j+= 1){  
                 for ( int h = 0 ; h < sides.length; h += 1){
                 	time = System.currentTimeMillis();
+                	runtime.gc();
+                	premem = runtime.totalMemory()-runtime.freeMemory();
                 	double pre = precision[j];
                 	int d = size[i];
                 	double[] s = sides[h];
@@ -150,6 +169,8 @@ public class precisionTest {
         	      do{
                        
         	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        runtime.gc();
+            		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
                 	 
                 System.out.println("twfahp\t"+
@@ -157,6 +178,7 @@ public class precisionTest {
                              pre+"\t"+
                              heatedPlate.numIterations+"\t"+
                              (System.currentTimeMillis()-time)+"\t"+
+                             premem+"\t" + postmem+"\t" +
                              s[0]+"\t"+s[1]+"\t"+s[2]+"\t"+s[3]);
        
         //		      System.out.println("Number of Iterations=" + tpdohp.getIteration());
