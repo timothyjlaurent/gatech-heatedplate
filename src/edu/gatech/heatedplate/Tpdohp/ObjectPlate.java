@@ -193,8 +193,7 @@ public class ObjectPlate implements Plate {
 	 * gets the current temp of the plate coordinate
 	 * @return
 	 */
-	@Override
-	public
+	protected
 	double getTemp(int row, int col){
 		return grid.get(row).get(col).getTemp();
 	}
