@@ -40,7 +40,7 @@ public class TpfahpPlate implements Plate {
 	
 	public TpfahpPlate( Plate oldFloatPlate) 
 	  {
-	  numIterations++;     // static counter for number of instantiated iterations 
+	  numIterations = oldFloatPlate.getIteration() +1 ;     // static counter for number of instantiated iterations 
 	  int d = oldFloatPlate.getDimension();
     float l = (float)oldFloatPlate.getLeft();
     float r = (float)oldFloatPlate.getRight();
@@ -58,9 +58,9 @@ public class TpfahpPlate implements Plate {
 	  }
 	
 	
-	public void resetIterations(){
-		numIterations = 0 ; 
-	}
+//	public void resetIterations(){
+//		numIterations = 0 ; 
+//	}
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice

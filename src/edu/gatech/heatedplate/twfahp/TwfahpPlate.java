@@ -40,7 +40,7 @@ public class TwfahpPlate implements Plate {
 	
 	public TwfahpPlate( Plate oldFloatPlate) 
 	  {
-	  this.numIterations = oldFloatPlate.getIteration() +1;    
+	  this.numIterations = oldFloatPlate.getIteration() + 1;    
 	  int d = oldFloatPlate.getDimension();
   Float l = (float)oldFloatPlate.getLeft();
   Float r = (float)oldFloatPlate.getRight();

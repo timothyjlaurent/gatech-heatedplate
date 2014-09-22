@@ -48,9 +48,9 @@ public class TpfahpCommand implements Command {
                                          (float)floatPlate.getTop(),
                                          (float)floatPlate.getBottom()) ;
 	
-		if(initialize){
-			newFloatPlate.resetIterations();
-		}
+//		if(initialize){
+//			newFloatPlate.resetIterations();
+//		}
 	}
 	
 	
@@ -83,7 +83,7 @@ public class TpfahpCommand implements Command {
 		TpfahpPlate newFloatPlate = new TpfahpPlate(oldFloatPlate);
 	     int d = oldFloatPlate.getDimension();
 
-	     newFloatPlate.numIterations++;
+//	     newFloatPlate.numIterations++;
 	 	
 	     for (int row = 1; row <= d; row++)
             {

@@ -80,22 +80,17 @@ public class TwfahpCommand implements Command {
 	     maxDelta = 0.0;
     	 newFloatPlate = new TwfahpPlate(oldFloatPlate);
 	     
-	     newFloatPlate.numIterations++;
+//	     newFloatPlate.numIterations++;
 	     for (int row = 1; row <= d; row++)
             {
-
    	     	 for (int col = 1; col <= d; col++ )
    	            {
-   	     		 
-   	     		 
-   	     		
+   	     		 	
    	     		newFloatPlate.mPlateValues[row][col]  =   new Float((oldFloatPlate.getTemp(row + 1 , col)  + 
      		                                                         oldFloatPlate.getTemp(row - 1 ,col)  +
      		                                                         oldFloatPlate.getTemp(row , col +1)    +
      		                                                         oldFloatPlate.getTemp(row ,col - 1))/4.00f);
    	     		                            
-   	     		                         
-   	    	  
      	     //if ((newFloatPlate.numIterations > (d+2 * d+2) ) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
      	     tempPercisionDelta = (double)(newFloatPlate.getTemp(row , col) -  oldFloatPlate.getTemp(row , col));
      	    if ( tempPercisionDelta > maxDelta){
