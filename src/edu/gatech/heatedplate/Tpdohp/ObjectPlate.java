@@ -45,6 +45,7 @@ public class ObjectPlate implements Plate {
 		this.maxDelta = d;
 	}
 	
+<<<<<<< HEAD
 	/**constructor for the Object Plate
 	 * 
 	 * @param width
@@ -55,6 +56,12 @@ public class ObjectPlate implements Plate {
 	 * @param left
 	 */
 	public ObjectPlate(int width, int height, double top, double right , double bottom , double left){
+=======
+	
+	
+	
+	public ObjectPlate(Integer width, Integer height, Double top, Double right , Double bottom , Double left){
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 		this.width = width;
 		this.height = height;
 		this.top = new GridObj( top );

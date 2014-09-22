@@ -1,6 +1,5 @@
 package edu.gatech.heatedplate.tpdahp;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;
@@ -11,7 +10,7 @@ public class TpdahpPlate implements Plate {
     private double      mRight;
     private double      mTop;
     private double      mBottom; 
-	public  double[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
+	private  double[][]  mPlateValues  ;   // stores the temperature for each lattice point of the plate
 	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
@@ -25,14 +24,14 @@ public class TpdahpPlate implements Plate {
 	public TpdahpPlate(int d , double l, double r, double t, double b) 
 	  {
 		numIterations++;     // static counter for number of instantiated iterations 
-        mPlateValues      = new double[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+        setmPlateValues(new double[d + 2] [d +2]) ;  //creates a 2 dimensional array of doubles in the size of d +2
         mLeft             = l;
         mRight            = r;
         mTop              = t;
         mBottom           = b;
         mDim              = d;
         setEdgeValues(d);
-  
+       
 	  }
 
 	public TpdahpPlate( TpdahpPlate doublePlate) 
@@ -77,16 +76,16 @@ public class TpdahpPlate implements Plate {
       		     //set the edge value when traversal reaches edge
       		
       		     if( (row == 0 ) )                         // top row
-      		       mPlateValues[row][col] = mTop;
+      		       getmPlateValues()[row][col] = mTop;
       		
       		     if( (col == 0))                           // left edge   
-      		       mPlateValues[row][col] = mLeft;
+      		       getmPlateValues()[row][col] = mLeft;
       		
       		     if( (row == d+1 ) )                       // right edge   
-        	       mPlateValues[row][col] = mBottom;
+        	       getmPlateValues()[row][col] = mBottom;
         		
         	     if( (col == d+1))                         // bottom edge    
-        	       mPlateValues[row][col] = mRight;
+        	       getmPlateValues()[row][col] = mRight;
       	    
       	       } // end col-loop
       	
@@ -136,18 +135,33 @@ public class TpdahpPlate implements Plate {
 	public int  getDimension() {
 		return mDim;
 	}
-
+	
 	public void DisplpayPlateTemp()
 	  {
 		for (int row = 1; row <= this.getDimension(); row++)
       {
 	     	 for (int col = 1; col <= this.getDimension(); col++ )
 	            {
-	     		 System.out.print("| "+ Math.round(mPlateValues[row][col] *100.00)/100.00 +" | " );
+	     		 System.out.print("| "+ Math.round(getmPlateValues()[row][col] *100.00)/100.00 +" | " );
 	            }
 	     	 System.out.print("\n");
 	    }
 	  }
+
+	public double[][] getmPlateValues() {
+		return mPlateValues;
+	}
+
+	public void setmPlateValues(double[][] mPlateValues) {
+		this.mPlateValues = mPlateValues;
+	}
 	
+	public void intializePlate() {
+		
+	}
+	
+	public double[][] toArray(){
+		return mPlateValues;
+	}
 
 }

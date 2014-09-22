@@ -147,6 +147,18 @@ public class TpfahpPlate implements Plate {
 	    }
 	  }
 	
+	public void intializePlate() {
+		
+	}
 	
 	
+	public double[][] toArray(){
+		double[][] out = new double[mDim][mDim];
+		for( int row = 0 ; row < mDim ; row += 1 ){
+			for( int col = 0 ; col < mDim ; col += 1  ){
+				out[row][col] = mPlateValues[row][col];
+			}
+		}
+		return out;
+	}
 }

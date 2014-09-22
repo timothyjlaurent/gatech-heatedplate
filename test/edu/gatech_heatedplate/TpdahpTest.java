@@ -12,7 +12,7 @@ public class TpdahpTest {
 	@Test
 	public void testdouble() {
 		
-		  TpdahpPlate heatedPlate = new TpdahpPlate(100, 120.0,300.23,45.122,57.87);
+		  TpdahpPlate heatedPlate = new TpdahpPlate(10000, 120.0,300.23,45.122,57.87);
 	      TpdahpCommand tpdahp = new TpdahpCommand(heatedPlate);
 	      
 	 

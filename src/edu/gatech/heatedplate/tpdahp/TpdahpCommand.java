@@ -65,8 +65,14 @@ public class TpdahpCommand implements Command {
                                          doublePlate.getRight(),
                                          doublePlate.getTop(),
                                          doublePlate.getBottom()) ;
+<<<<<<< HEAD
 		maxDelta = 0.0;
 		newDoublePlate.resetIterations();
+=======
+	
+		newDoublePlate.numIterations = 0;
+		
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 	}
 
 	
@@ -82,21 +88,33 @@ public class TpdahpCommand implements Command {
 		 
 		 maxDelta = 0.0;
 	     int d = oldDoublePlate.getDimension();
+<<<<<<< HEAD
 	 	
 	     newDoublePlate = new TpdahpPlate(oldDoublePlate); 
 	     
 	     
+=======
+	     newDoublePlate.numIterations++;
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 	     for (int row = 1; row <= d; row++)
             {
+<<<<<<< HEAD
 	    
+=======
+	    	
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
    	     	 for (int col = 1; col <= d; col++ )
    	            {
-     	    	  newDoublePlate.mPlateValues[row][col] = ( oldDoublePlate.mPlateValues[row + 1] [col]  + 
-     		                                                oldDoublePlate.mPlateValues[row - 1] [col]  +
-     		                                                oldDoublePlate.mPlateValues[row] [col +1]   +
-     		                                                oldDoublePlate.mPlateValues[row] [col - 1]) / 4.0;
+     	    	  newDoublePlate.getmPlateValues()[row][col] = ( oldDoublePlate.getmPlateValues()[row + 1] [col]  + 
+     		                                                oldDoublePlate.getmPlateValues()[row - 1] [col]  +
+     		                                                oldDoublePlate.getmPlateValues()[row] [col +1]   +
+     		                                                oldDoublePlate.getmPlateValues()[row] [col - 1]) / 4.0;
      	    	  
+<<<<<<< HEAD
      	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] - oldDoublePlate.mPlateValues[row][col];
+=======
+     	    	 tempPercisionDelta = newDoublePlate.getmPlateValues()[row][col] -  oldDoublePlate.getmPlateValues()[row][col];
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
      	    	  
      	    	 if(Math.abs(tempPercisionDelta) > maxDelta){
      	    		 maxDelta = Math.abs(tempPercisionDelta);
@@ -111,22 +129,30 @@ public class TpdahpCommand implements Command {
 	    return newDoublePlate;
 	  }
 
-	@Override
-	public Plate execute(Plate plate) {
-	 //TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	public double getPercision()
 	  {
 		return tempPercisionDelta;
 		
 	  }
+<<<<<<< HEAD
 	
 	public double getMaxDelta(){
 		return maxDelta;
 	}
 	
+=======
+	public int getIteration(){
+		return newDoublePlate.numIterations ;	
+	}
+
+	@Override
+	public Plate execute(Plate plate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+>>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 	
 
 }
