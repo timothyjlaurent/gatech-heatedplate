@@ -37,14 +37,14 @@ public class TpfahpPlate implements Plate {
 	  }
 
 	
-	public TpfahpPlate( TpfahpPlate doublePlate) 
+	public TpfahpPlate( Plate oldFloatPlate) 
 	  {
 	  numIterations++;     // static counter for number of instantiated iterations 
-	  int d = doublePlate.getDimension();
-    float l = doublePlate.getLeft();
-    float r = doublePlate.getRight();
-    float t = doublePlate.getTop();
-    float b = doublePlate.getBottom();
+	  int d = oldFloatPlate.getDimension();
+    float l = (float)oldFloatPlate.getLeft();
+    float r = (float)oldFloatPlate.getRight();
+    float t = (float)oldFloatPlate.getTop();
+    float b = (float)oldFloatPlate.getBottom();
 	  
 	  mPlateValues      = new float[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
     mLeft             = l;
@@ -93,39 +93,31 @@ public class TpfahpPlate implements Plate {
 	}
 	
 
-	@Override
-	public HashMap<Integer, Plate> getTemp() {
-		
-		HashMap<Integer,Plate> map = new HashMap<Integer,Plate>();
-		map.put(numIterations, this);
-		
-	  return map;
-	}
 
-	public float getLeft() {
-		return mLeft;
+	public double getLeft() {
+		return (double)mLeft;
 	}
 
 	public void setLeft(float mLeft) {
 		this.mLeft = mLeft;
 	}
-	public float getRight() {
-		return mRight;
+	public double getRight() {
+		return (double)mRight;
 	}
 
 	public void setRight(float mRight) {
 		this.mRight = mRight;
 	}
-	public float getTop() {
-		return mTop;
+	public double getTop() {
+		return (double)mTop;
 	}
 
 	public void setTop(float mTop) {
 		this.mTop = mTop;
 	}
 	
-	public float getBottom() {
-		return mBottom;
+	public double getBottom() {
+		return (double)mBottom;
 	}
 
 	public void setBottom(float mBottom) {
@@ -153,12 +145,32 @@ public class TpfahpPlate implements Plate {
 	
 	
 	public double[][] toArray(){
-		double[][] out = new double[mDim][mDim];
-		for( int row = 0 ; row < mDim ; row += 1 ){
-			for( int col = 0 ; col < mDim ; col += 1  ){
-				out[row][col] = mPlateValues[row][col];
+		double[][] ret = new double[mDim][mDim]; 
+		for ( int col = 0 ; col < mDim ; col += 1){
+			for( int row = 0 ; row < mDim ; row += 1){
+				ret[row][col] = (double)mPlateValues[row+1][col + 1];
 			}
 		}
-		return out;
+		return ret ;
+	}
+
+
+	@Override
+	public int getIteration() {
+		// TODO Auto-generated method stub
+		return numIterations;
+	}
+
+
+	public void setTemp(int row, int col, double val) {
+		mPlateValues[row][col] = (float) val;
+		
+	}
+
+
+	public double getTemp(int row, int col) {
+		// TODO Auto-generated method stub
+		return mPlateValues[row][col];
+		
 	}
 }

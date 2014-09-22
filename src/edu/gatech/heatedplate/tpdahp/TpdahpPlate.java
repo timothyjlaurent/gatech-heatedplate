@@ -94,15 +94,6 @@ public class TpdahpPlate implements Plate {
 	}
 	
 
-	@Override
-	public HashMap<Integer, Plate> getTemp() {
-		
-		HashMap<Integer,Plate> map = new HashMap<Integer,Plate>();
-		map.put(numIterations, this);
-		
-	  return map;
-	}
-
 	public double getLeft() {
 		return mLeft;
 	}
@@ -161,7 +152,28 @@ public class TpdahpPlate implements Plate {
 	}
 	
 	public double[][] toArray(){
-		return mPlateValues;
+		double[][] ret = new double[mDim][mDim]; 
+		for ( int col = 0 ; col < mDim ; col += 1){
+			for( int row = 0 ; row < mDim ; row += 1){
+				ret[row][col] = (double)mPlateValues[row+1][col + 1];
+			}
+		}
+		return ret ;
+	}
+
+	public int getIteration() {
+		// TODO Auto-generated method stub
+		return numIterations;
+	}
+
+	public void setTemp(int row, int col, double val) {
+		mPlateValues[row][col] = val;
+		
+	}
+
+	public double getTemp(int row, int col) {
+		// TODO Auto-generated method stub
+		return (double)mPlateValues[row][col];
 	}
 
 }

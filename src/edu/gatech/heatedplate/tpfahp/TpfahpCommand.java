@@ -43,10 +43,10 @@ public class TpfahpCommand implements Command {
 		
 		maxDelta = 0;
 		newFloatPlate = new TpfahpPlate(floatPlate.getDimension(),
-                                         floatPlate.getLeft(),
-                                         floatPlate.getRight(),
-                                         floatPlate.getTop(),
-                                         floatPlate.getBottom()) ;
+                                         (float)floatPlate.getLeft(),
+                                         (float)floatPlate.getRight(),
+                                         (float)floatPlate.getTop(),
+                                         (float)floatPlate.getBottom()) ;
 	
 		if(initialize){
 			newFloatPlate.resetIterations();
@@ -63,10 +63,10 @@ public class TpfahpCommand implements Command {
 
 		maxDelta = 0;
 		newFloatPlate = new TpfahpPlate(floatPlate.getDimension(),
-                                         floatPlate.getLeft(),
-                                         floatPlate.getRight(),
-                                         floatPlate.getTop(),
-                                         floatPlate.getBottom()) ;
+                                         (float)floatPlate.getLeft(),
+                                         (float)floatPlate.getRight(),
+                                         (float)floatPlate.getTop(),
+                                         (float)floatPlate.getBottom()) ;
 
 		
 	}
@@ -74,8 +74,11 @@ public class TpfahpCommand implements Command {
 	/* (non-Javadoc)
 	 * @see edu.gatech.heatedplate.command.Command#execute()
 	 */
-	public TpfahpPlate execute(TpfahpPlate oldFloatPlate)
+	@Override
+	public Plate execute(Plate oldFloatPlate)
 	   {
+		
+		TpfahpPlate ofp = (TpfahpPlate)oldFloatPlate; 
 		maxDelta = 0;
 		TpfahpPlate newFloatPlate = new TpfahpPlate(oldFloatPlate);
 	     int d = oldFloatPlate.getDimension();
@@ -88,17 +91,17 @@ public class TpfahpCommand implements Command {
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
-     	    	  newFloatPlate.mPlateValues[row][col] = ( oldFloatPlate.mPlateValues[row + 1] [col]  + 
-     		                                                oldFloatPlate.mPlateValues[row - 1] [col]  +
-     		                                                oldFloatPlate.mPlateValues[row] [col +1]   +
-     		                                                oldFloatPlate.mPlateValues[row] [col - 1]) / 4.0f;
+     	    	  newFloatPlate.mPlateValues[row][col] = ( ofp.mPlateValues[row + 1] [col]  + 
+     		                                                ofp.mPlateValues[row - 1] [col]  +
+     		                                                ofp.mPlateValues[row] [col +1]   +
+     		                                                ofp.mPlateValues[row] [col - 1]) / 4.0f;
      	      // if ((newFloatPlate.numIterations > d+2) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
      	    ///	 tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
      	    	  
      	   // 	  if( tempPercisionDelta   <= percisionThreshold)
      	   // 		  continue;
      	    		  
-     	    	  float delta =  newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
+     	    	  float delta =  newFloatPlate.mPlateValues[row][col] -  ofp.mPlateValues[row][col];
    	              if( delta > maxDelta ){
    	            	  maxDelta = delta;
    	              }
@@ -110,11 +113,7 @@ public class TpfahpCommand implements Command {
 	    return newFloatPlate;
 	  }
 
-	@Override
-	public Plate execute(Plate plate) {
-	 //TODO Auto-generated method stub
-		return null;
-	}
+
 	
 	public double getPercision()
 	  {

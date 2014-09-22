@@ -62,13 +62,14 @@ public class TpdahpCommand implements Command {
 	/* (non-Javadoc)
 	 * @see edu.gatech.heatedplate.command.Command#execute()
 	 */
-	public TpdahpPlate execute(TpdahpPlate oldDoublePlate)
+	@Override
+	public Plate execute(Plate oldDoublePlate)
 	   {
 		 
 		 maxDelta = 0.0;
 	     int d = oldDoublePlate.getDimension();
-	 	
-	     newDoublePlate = new TpdahpPlate(oldDoublePlate); 
+	 	 TpdahpPlate odp = (TpdahpPlate)oldDoublePlate;
+	     newDoublePlate = new TpdahpPlate(odp); 
 	     
 	     
 
@@ -76,12 +77,12 @@ public class TpdahpCommand implements Command {
 	     {	    	
    	     	 for (int col = 1; col <= d; col++ )
    	            {
-     	    	  newDoublePlate.getmPlateValues()[row][col] = ( oldDoublePlate.getmPlateValues()[row + 1] [col]  + 
-     		                                                oldDoublePlate.getmPlateValues()[row - 1] [col]  +
-     		                                                oldDoublePlate.getmPlateValues()[row] [col +1]   +
-     		                                                oldDoublePlate.getmPlateValues()[row] [col - 1]) / 4.0;
+     	    	  newDoublePlate.getmPlateValues()[row][col] = ( odp.getmPlateValues()[row + 1] [col]  + 
+     		                                                odp.getmPlateValues()[row - 1] [col]  +
+     		                                                odp.getmPlateValues()[row] [col +1]   +
+     		                                                odp.getmPlateValues()[row] [col - 1]) / 4.0;
      	    	  
-     	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] - oldDoublePlate.mPlateValues[row][col];
+     	    	 tempPercisionDelta = newDoublePlate.mPlateValues[row][col] - odp.mPlateValues[row][col];
      	    	  
      	    	 if(Math.abs(tempPercisionDelta) > maxDelta){
      	    		 maxDelta = Math.abs(tempPercisionDelta);
@@ -112,11 +113,7 @@ public class TpdahpCommand implements Command {
 		return newDoublePlate.numIterations ;	
 	}
 
-	@Override
-	public Plate execute(Plate plate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	
 
 }

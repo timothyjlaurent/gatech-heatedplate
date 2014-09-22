@@ -23,12 +23,7 @@ public class ObjectPlate implements Plate {
 	private int iteration; // the iteration #
 	private double maxDelta;
 	
-	public HashMap<Integer, Plate> getTemp(){
-		HashMap<Integer, Plate> map = new HashMap<Integer, Plate>();
-		map.put(iteration, this);
-		return map;
-	}
-	
+
 	/**
 	 * 
 	 * @param i
@@ -72,11 +67,22 @@ public class ObjectPlate implements Plate {
 //		}
 //		makeGridConnections();	
 		this.iteration = 0;
-		this.maxDelta = 0.0;
+		this.intializePlate();
 	}	
 
 	public ObjectPlate(int d, double top, double right , double bottom , double left){
 		this(d,d,top,right,bottom,left);
+	}
+
+	
+	public ObjectPlate(ObjectPlate oldPlate){
+		this.width = oldPlate.getWidth();
+		this.height = oldPlate.getHeight();
+		this.top = new GridObj(oldPlate.getTop());
+		this.right = new GridObj(oldPlate.getRight());
+		this.bottom = new GridObj(oldPlate.getBottom());
+		this.left = new GridObj(oldPlate.getLeft());
+		this.iteration = oldPlate.getIteration() + 1;
 	}
 	
 	
@@ -178,7 +184,7 @@ public class ObjectPlate implements Plate {
 	 * @param col
 	 * @param temp
 	 */
-	protected void setTemp( int row, int col, double temp){
+	public void setTemp( int row, int col, double temp){
 		grid.get(row).get(col).setTemp(temp);
 	}
 	
@@ -187,7 +193,9 @@ public class ObjectPlate implements Plate {
 	 * gets the current temp of the plate coordinate
 	 * @return
 	 */
-	protected double getTemp(int row, int col){
+	@Override
+	public
+	double getTemp(int row, int col){
 		return grid.get(row).get(col).getTemp();
 	}
 	
@@ -316,7 +324,13 @@ public class ObjectPlate implements Plate {
 	public int getIteration() {
 		return iteration;
 	}
-	
+
+	@Override
+	public int getDimension() {
+		// TODO Auto-generated method stub
+		return height;
+	}
+
 	
 	
 //	/**

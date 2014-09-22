@@ -22,15 +22,14 @@ public class TpdohpCommand implements Command {
 
 	}
 
-
-	public ObjectPlate execute(ObjectPlate oldPlate){
-		newPlate = new ObjectPlate(oldPlate.getWidth(), oldPlate.getHeight(), 
-				oldPlate.getTop(), oldPlate.getRight(), oldPlate.getBottom(), oldPlate.getLeft());
-
+	@Override
+	public Plate execute(Plate op){
+//		newPlate = new ObjectPlate(oldPlate.getWidth(), oldPlate.getHeight(), 
+//				oldPlate.getTop(), oldPlate.getRight(), oldPlate.getBottom(), oldPlate.getLeft());
+		ObjectPlate oldPlate = (ObjectPlate)op;
+		newPlate = new ObjectPlate(oldPlate);
 		int height = oldPlate.getHeight();
 		int width = oldPlate.getWidth();
-		this.iteration += 1 ;
-		newPlate.setInteration((int)iteration);
 		this.maxDelta = 0.0;
 		for( int row = 0 ; row < height ; row += 1 ){
 			for( int col = 0 ; col < width ; col += 1  ){
@@ -63,10 +62,6 @@ public class TpdohpCommand implements Command {
 	}
 	
 	
-	@Override
-	public Plate execute(Plate plate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 }

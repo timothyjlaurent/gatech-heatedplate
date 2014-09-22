@@ -28,7 +28,7 @@ import edu.gatech.heatedplate.common.Plate;
 
 public class TwfahpCommand implements Command {
 
-	private Float tempPercisionDelta = 1.0f ;
+	private double tempPercisionDelta = 1.0f ;
 	private Float percisionThreshold = 0.01f;
 	private TwfahpPlate newFloatPlate ;
 	private double maxDelta;
@@ -39,10 +39,10 @@ public class TwfahpCommand implements Command {
 
 		
 		newFloatPlate = new TwfahpPlate(FloatPlate.getDimension(),
-                                         FloatPlate.getLeft(),
-                                         FloatPlate.getRight(),
-                                         FloatPlate.getTop(),
-                                         FloatPlate.getBottom()) ;
+                                         (float)FloatPlate.getLeft(),
+                                         (float)FloatPlate.getRight(),
+                                         (float)FloatPlate.getTop(),
+                                         (float)FloatPlate.getBottom()) ;
 		if( initialize ){
 			FloatPlate.resetIterations();
 		}
@@ -61,10 +61,10 @@ public class TwfahpCommand implements Command {
 
 		
 		newFloatPlate = new TwfahpPlate(FloatPlate.getDimension(),
-                                         FloatPlate.getLeft(),
-                                         FloatPlate.getRight(),
-                                         FloatPlate.getTop(),
-                                         FloatPlate.getBottom()) ;
+                                         (float)FloatPlate.getLeft(),
+                                         (float)FloatPlate.getRight(),
+                                         (float)FloatPlate.getTop(),
+                                         (float)FloatPlate.getBottom()) ;
 
 		newFloatPlate.numIterations = 0;
 		
@@ -73,9 +73,9 @@ public class TwfahpCommand implements Command {
 	/* (non-Javadoc)
 	 * @see edu.gatech.heatedplate.command.Command#execute()
 	 */
-	public TwfahpPlate execute(TwfahpPlate oldFloatPlate)
+	public Plate execute(Plate ofp)
 	   {
-		   
+		 TwfahpPlate oldFloatPlate = (TwfahpPlate) ofp ;  
 	     int d = oldFloatPlate.getDimension();
 	     maxDelta = 0.0;
     	 newFloatPlate = new TwfahpPlate(oldFloatPlate);
@@ -89,15 +89,15 @@ public class TwfahpCommand implements Command {
    	     		 
    	     		 
    	     		
-   	     		newFloatPlate.mPlateValues[row][col]  =   new Float((oldFloatPlate.mPlateValues[row + 1] [col]  + 
-     		                                                         oldFloatPlate.mPlateValues[row - 1] [col]  +
-     		                                                         oldFloatPlate.mPlateValues[row] [col +1]   +
-     		                                                         oldFloatPlate.mPlateValues[row] [col - 1])/4.00f);
+   	     		newFloatPlate.mPlateValues[row][col]  =   new Float((oldFloatPlate.getTemp(row + 1 , col)  + 
+     		                                                         oldFloatPlate.getTemp(row - 1 ,col)  +
+     		                                                         oldFloatPlate.getTemp(row , col +1)    +
+     		                                                         oldFloatPlate.getTemp(row ,col - 1))/4.00f);
    	     		                            
    	     		                         
    	    	  
      	     //if ((newFloatPlate.numIterations > (d+2 * d+2) ) && (newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col] < tempPercisionDelta))  
-     	     tempPercisionDelta = newFloatPlate.mPlateValues[row][col] -  oldFloatPlate.mPlateValues[row][col];
+     	     tempPercisionDelta = (double)(newFloatPlate.getTemp(row , col) -  oldFloatPlate.getTemp(row , col));
      	    if ( tempPercisionDelta > maxDelta){
      	    	maxDelta = tempPercisionDelta;
      	    }
@@ -111,11 +111,6 @@ public class TwfahpCommand implements Command {
 	    return newFloatPlate;
 	  }
 
-	@Override
-	public Plate execute(Plate plate) {
-	 //TODO Auto-generated method stub
-		return null;
-	}
 	
 	public double getPercision()
 	  {

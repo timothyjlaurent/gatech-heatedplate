@@ -26,7 +26,7 @@ public class precisionTest {
 		long premem;
 		long postmem;
 		int[] size = {10,20, 50 ,100 };
-		double[] precision = {0.1, 0.01, 0.001, 0.0001}; //, 0.00001 , 0.000001, 0.0000001 };
+		double[] precision = {0.1, 0.01, 0.001};//, 0.0001}; //, 0.00001 , 0.000001, 0.0000001 };
 		double[][] sides = {{
 			rand.nextDouble() * 100, rand.nextDouble() * 100, rand.nextDouble() * 100, rand.nextDouble() * 100
 		},
@@ -47,13 +47,13 @@ public class precisionTest {
                 	int d = size[i];
                 	double[] s = sides[h];
                 	ObjectPlate heatedPlate = new ObjectPlate( d, d, s[0], s[1] , s[2] , s[3] );
-                	heatedPlate.intializePlate();
+//                	heatedPlate.intializePlate();
                 	TpdohpCommand tpdohp = new TpdohpCommand(heatedPlate);
         //		      heatedPlate.print();
                          
                 	do{
                                
-                		heatedPlate = tpdohp.execute(heatedPlate);
+                		heatedPlate = (ObjectPlate) tpdohp.execute(heatedPlate);
         //		        if (heatedPlate.getIteration() % 1000 == 0 ){
                 		runtime.gc();
                 		postmem = runtime.totalMemory()-runtime.freeMemory();
@@ -92,7 +92,7 @@ public class precisionTest {
         	 
         	      do{
                        
-        	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        heatedPlate = (TpdahpPlate) tpdahp.execute(heatedPlate);
         	        runtime.gc();
             		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
@@ -129,7 +129,7 @@ public class precisionTest {
         	 
         	      do{
                        
-        	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        heatedPlate = (TpfahpPlate) tpdahp.execute(heatedPlate);
         	        runtime.gc();
             		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
@@ -168,7 +168,7 @@ public class precisionTest {
         	 
         	      do{
                        
-        	        heatedPlate = tpdahp.execute(heatedPlate);
+        	        heatedPlate = (TwfahpPlate) tpdahp.execute(heatedPlate);
         	        runtime.gc();
             		postmem = runtime.totalMemory()-runtime.freeMemory();
         	      } while ( tpdahp.getMaxDelta() > pre);
