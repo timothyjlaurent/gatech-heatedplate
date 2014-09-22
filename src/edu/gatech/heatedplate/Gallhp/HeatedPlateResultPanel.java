@@ -6,9 +6,11 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
+
+import edu.gatech.heatedplate.common.Plate;
 import static edu.gatech.heatedplate.Gallhp.HeatedPlateConstant.*;
 
-public class HeatedPlateResultPanel extends JPanel {
+public class HeatedPlateResultPanel extends JPanel implements Runnable {
 	
 	public HeatedPlateResultPanel() {		
 	}
@@ -23,28 +25,48 @@ public class HeatedPlateResultPanel extends JPanel {
 		
 		panelWidth = heatedPlateFrame.getWidth() - (CONTROL_PANEL_WIDTH + (2 * PANEL_FRAME_BORDER_GAP));
 		panelHeight = heatedPlateFrame.getHeight();
-		initColor = true;
+		simulationProgress = false;
+		
+		Thread animationThread = new Thread(this);
+		animationThread.start();
 		return true;
 	}
 	
 	 public void initDisplay(int dimension) {
 		 this.dimension = dimension;
-		 initColor = true;
+		 simulationProgress = true;
 		 gridWidth = ((panelWidth%dimension) == 0)?panelWidth:(panelWidth-(panelWidth%dimension));
 		 gridHeight = ((panelHeight%dimension) == 0)?panelHeight:(panelHeight-(panelHeight%dimension));
-		 this.repaint();
 	 }	 
 	 
-	 public void setDisplay(double[][] color) {
+	
+	 
+	  public void setDisplay(double[][] color) {
 		 this.color = color;
-		 initColor = false;
-		 this.repaint();
+		 simulationProgress = true;
+	 }	 
+	 
+	 public void freezeDisplay() {
+		 simulationProgress = false;
 	 }	 
 	 
 	 public Dimension getPreferredSize() {
 		 return new Dimension(panelWidth, panelHeight);
 	 }
-	  
+	 public void run() {
+			while(true) {
+				if (simulationProgress) {
+					repaint();
+				}			 
+				
+				try {
+					Thread.sleep(50);
+				} catch(Exception e) {
+				
+				}
+			}
+	 }
+	 
     private void paintSpot(Graphics aGraphics, int row, int col, double t) {
         int rowPos = PANEL_GRID_BORDER_GAP + row * gridHeight/dimension;
         int colPos = PANEL_GRID_BORDER_GAP + col * gridWidth/dimension;
@@ -54,12 +76,15 @@ public class HeatedPlateResultPanel extends JPanel {
         aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);
         
         // Color in RGB format with green and blue values = 0.0
-        if (initColor) {
-        	aGraphics.setColor(new Color((float) Math.random(), 0.f, 0.f));
+        try {
+        if (!simulationProgress) {
+        	aGraphics.setColor(new Color(0.f, 0.f, 0.f));
         } else {
         	aGraphics.setColor(new Color((float)color[row][col]/100, 0.f, 0.f));
         }
-        
+        } catch(Exception exception) {
+        	int k = 0;
+        }
         
         aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);
     }
@@ -90,5 +115,6 @@ public class HeatedPlateResultPanel extends JPanel {
 	private int gridHeight;
 	private int dimension;
 	private double[][] color;
-	boolean initColor;
+	private boolean simulationProgress;
+	
 }
