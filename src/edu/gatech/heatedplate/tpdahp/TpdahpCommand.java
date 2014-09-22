@@ -105,10 +105,12 @@ public class TpdahpCommand implements Command {
 		
 	  }
 	
+	@Override
 	public double getMaxDelta(){
 		return maxDelta;
 	}
 	
+	@Override
 	public int getIteration(){
 		return newDoublePlate.numIterations ;	
 	}

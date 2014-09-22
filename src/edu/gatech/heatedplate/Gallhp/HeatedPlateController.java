@@ -31,35 +31,33 @@ public class HeatedPlateController {
 							Double topEdgeTemperature,
 							Double bottomEdgeTemperature) {
 		
-		
+		try {
 		if (heatedPlateFrame != null) {
 			HeatedPlateResultPanel heatedPlateResultPanel = heatedPlateFrame.getHeatedPlateResultPanel();
 			heatedPlateResultPanel.initDisplay(dimension);
 			
-			/*Plate plate = HeatedPlateFactory.createPlate(plateCommandType,
+			Plate plate = HeatedPlateFactory.createPlate(plateCommandType,
 														 dimension,
 														 leftEdgeTemperature,
 														 rightEdgeTemperature,
 														 topEdgeTemperature,
-														 bottomEdgeTemperature); */
+														 bottomEdgeTemperature); 
 			
-			TpdahpPlate plate = new TpdahpPlate(dimension,
-												leftEdgeTemperature,
-												rightEdgeTemperature,
-												topEdgeTemperature,
-												bottomEdgeTemperature); 
-
-			//Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);
-				TpdahpCommand command = new TpdahpCommand(plate);
+			Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);
 			
 			  do{
-	              
-				  plate = command.execute(plate);
-				  
-			 } while (command.getIteration() < 2000000000);
+	        	  plate = command.execute(plate);
+			 } while ( command.getMaxDelta() > deltaThreshold || command.getIteration() < 1000000 );
+			 
 			  heatedPlateResultPanel.setDisplay(plate.toArray());
+		}
+		} catch(Exception exception) {
+			
 		}
 	}
 	
+	
+	
+	public static double deltaThreshold = .01;
 	private HeatedPlateFrame heatedPlateFrame;
 }

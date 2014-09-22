@@ -10,4 +10,6 @@ package edu.gatech.heatedplate.common;
 public interface Command {
 	
 	public Plate execute(Plate plate) ;
+	public int getIteration();
+	public double getMaxDelta();
 }

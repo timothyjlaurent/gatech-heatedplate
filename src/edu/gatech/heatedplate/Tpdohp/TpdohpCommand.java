@@ -52,11 +52,12 @@ public class TpdohpCommand implements Command {
 		return delta;
 	}
 
-
+	@Override
 	public int getIteration(){
 		return iteration ;	
 	}
 	
+	@Override
 	public double getMaxDelta(){
 		return maxDelta;
 	}

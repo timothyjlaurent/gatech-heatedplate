@@ -36,18 +36,18 @@ public class Demo {
 		     // if (args.length <5)
 		    //	  throw new IllegalArgumentException("The wrong number of arguments have been supplied.");
 		     
-		      TpfahpPlate heatedPlate = new TpfahpPlate(100, 120.0f,300.23f,45.122f,57.87f);
-		      TpfahpCommand tpfahp = new TpfahpCommand(heatedPlate);
+		      Plate heatedPlate = new TpfahpPlate(100, 120.0f,300.23f,45.122f,57.87f);
+		      TpfahpCommand tpfahp = new TpfahpCommand((TpfahpPlate)heatedPlate);
 		      
 		 
 		      do{
                    
 		        heatedPlate = tpfahp.execute(heatedPlate);
-		      } while (heatedPlate.numIterations < 1000000);
+		      } while (((TpfahpPlate)heatedPlate).numIterations < 1000000);
 		     // }  while (tpfahp.getPercision() < 0.01f);
 		      
-		      System.out.println("Number of Iterations=" + heatedPlate.numIterations);
-		      heatedPlate.DisplpayPlateTemp();
+		      System.out.println("Number of Iterations=" + ((TpfahpPlate)heatedPlate).numIterations);
+		      ((TpfahpPlate)heatedPlate).DisplpayPlateTemp();
 		      
 		      
 		     } 	  

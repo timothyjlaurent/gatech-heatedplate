@@ -36,14 +36,14 @@ public class Demo {
 		     // if (args.length <5)
 		    //	  throw new IllegalArgumentException("The wrong number of arguments have been supplied.");
 		      
-		      TwfahpPlate heatedPlate = new TwfahpPlate(100, 509.028397862f,3022.23f,4522.1278372f,5732.87657354f);
-		      TwfahpCommand twfahp = new TwfahpCommand(heatedPlate);
+		      Plate heatedPlate = new TwfahpPlate(100, 509.028397862f,3022.23f,4522.1278372f,5732.87657354f);
+		      TwfahpCommand twfahp = new TwfahpCommand((TwfahpPlate)heatedPlate);
 		      
 		 
 		      do{
                    
 		        heatedPlate = twfahp.execute(heatedPlate);	  
-		        } while (heatedPlate.numIterations < 1000000);
+		        } while (((TwfahpPlate)heatedPlate).numIterations < 1000000);
 		      
 		     } 	  
 		catch(Exception e)

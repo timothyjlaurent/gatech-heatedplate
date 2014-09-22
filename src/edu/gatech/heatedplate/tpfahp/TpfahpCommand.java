@@ -121,11 +121,12 @@ public class TpfahpCommand implements Command {
 		
 	  }
 	
+	@Override	
 	public double getMaxDelta(){
 		return (double)maxDelta;
 	}
 	
-	
+	@Override
 	public int getIteration(){
 		return newFloatPlate.numIterations ;	
 	}
