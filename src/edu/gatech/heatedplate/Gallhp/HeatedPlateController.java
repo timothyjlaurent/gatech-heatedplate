@@ -43,21 +43,20 @@ public class HeatedPlateController {
 														 topEdgeTemperature,
 														 bottomEdgeTemperature); */
 			
-			Plate plate = new TpdahpPlate(dimension,
+			TpdahpPlate plate = new TpdahpPlate(dimension,
 												leftEdgeTemperature,
 												rightEdgeTemperature,
 												topEdgeTemperature,
 												bottomEdgeTemperature); 
 
-			Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);
-			//TpdahpCommand command = new TpdahpCommand(plate);
+			//Command command = HeatedPlateFactory.createCommand(plateCommandType, plate);
+				TpdahpCommand command = new TpdahpCommand(plate);
 			
 			  do{
 	              
 				  plate = command.execute(plate);
-				 
 				  
-			 } while (command.getIteration() < 200000);
+			 } while (command.getIteration() < 2000000000);
 			  heatedPlateResultPanel.setDisplay(plate.toArray());
 		}
 	}
