@@ -65,12 +65,8 @@ public class TwfahpCommand implements Command {
                                          FloatPlate.getRight(),
                                          FloatPlate.getTop(),
                                          FloatPlate.getBottom()) ;
-<<<<<<< HEAD
-		FloatPlate.resetIterations();
-	
-=======
+
 		newFloatPlate.numIterations = 0;
->>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 		
 	}
 
@@ -81,20 +77,13 @@ public class TwfahpCommand implements Command {
 	   {
 		   
 	     int d = oldFloatPlate.getDimension();
-<<<<<<< HEAD
 	     maxDelta = 0.0;
     	 newFloatPlate = new TwfahpPlate(oldFloatPlate);
 	     
-=======
 	     newFloatPlate.numIterations++;
->>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 	     for (int row = 1; row <= d; row++)
             {
-<<<<<<< HEAD
 
-=======
-	    	 
->>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
    	     	 for (int col = 1; col <= d; col++ )
    	            {
    	     		 
@@ -134,15 +123,12 @@ public class TwfahpCommand implements Command {
 		
 	  }
 	
-<<<<<<< HEAD
 	public double getMaxDelta(){
 		return (double)maxDelta;
 	}	
 	
-=======
 	public int getIteration(){
 		return newFloatPlate.numIterations ;	
 	}
->>>>>>> branch 'master' of git@github.com:timothyjlaurent/gatech-heatedplate.git
 
 }

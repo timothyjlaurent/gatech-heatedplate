@@ -24,7 +24,7 @@ public class TwfahpPlate implements Plate {
 	 */
 	public TwfahpPlate(int d , Float l, Float r, Float t, Float b) 
 	  {
-		numIterations++;     // static counter for number of instantiated iterations 
+		     // static counter for number of instantiated iterations 
         mPlateValues      = new Float[d + 2] [d +2] ;  //creates a 2 dimensional array of float in the size of d +2
         mLeft             = l;
         mRight            = r;
@@ -32,13 +32,14 @@ public class TwfahpPlate implements Plate {
         mBottom           = b;
         mDim              = d;
         setEdgeValues(d);
+        numIterations = 0;
   
 	  }
 	
 	
 	public TwfahpPlate( TwfahpPlate doublePlate) 
 	  {
-	  this.numIterations = doublePlate.numIterations+1;     // static counter for number of instantiated iterations 
+	  this.numIterations = doublePlate.numIterations+1;    
 	  int d = doublePlate.getDimension();
   Float l = doublePlate.getLeft();
   Float r = doublePlate.getRight();

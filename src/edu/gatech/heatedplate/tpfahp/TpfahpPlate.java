@@ -13,7 +13,7 @@ public class TpfahpPlate implements Plate {
     private float      mTop;
     private float      mBottom; 
 	public  float[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
-	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
+	public  int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
 	/* concrete plate constructor for Tpdahp plate 
@@ -25,7 +25,7 @@ public class TpfahpPlate implements Plate {
 	 */
 	public TpfahpPlate(int d , float l, float r, float t, float b) 
 	  {
-		numIterations++;     // static counter for number of instantiated iterations 
+		numIterations = 0;     // static counter for number of instantiated iterations 
         mPlateValues      = new float[d + 2] [d +2] ;  //creates a 2 dimensional array of float in the size of d +2
         mLeft             = l;
         mRight            = r;
