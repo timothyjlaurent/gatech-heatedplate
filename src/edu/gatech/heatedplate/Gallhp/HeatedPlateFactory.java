@@ -51,10 +51,10 @@ public class HeatedPlateFactory {
 		        case PLATE_COMMAND_TYPE_TPDOHP:
 		        	plate = new ObjectPlate(dimension, 
 						        			dimension,
-											leftEdgeTemperature, 
-											rightEdgeTemperature, 
-											topEdgeTemperature, 
-											bottomEdgeTemperature);
+						        			topEdgeTemperature, 
+											rightEdgeTemperature,											 
+											bottomEdgeTemperature,
+											leftEdgeTemperature);
 		            break;
 		 
 		        default:
@@ -66,37 +66,4 @@ public class HeatedPlateFactory {
 		
         return plate;
 	}
-	
-	public static Command createCommand(PlateCommandType plateCommandType,
-										Plate plate) throws Exception {
-		Command command = null;
-		try { 
-			if (plate == null) {
-				throw new IllegalArgumentException("Null Plate Object");
-			}
-			
-			switch (plateCommandType) {
-		        case PLATE_COMMAND_TYPE_TPDAHP:
-		        	command = new TpdahpCommand((TpdahpPlate)plate);
-		            break; 
-		        case PLATE_COMMAND_TYPE_TPFAHP:
-		        	command = new TpfahpCommand((TpfahpPlate)plate);
-		            break;
-		        case PLATE_COMMAND_TYPE_TWFAHP:
-		        	command = new TwfahpCommand((TwfahpPlate)plate);
-		            break;
-		        case PLATE_COMMAND_TYPE_TPDOHP:
-		        	command = new TpdohpCommand((ObjectPlate)plate);
-		            break;	 
-		        default:
-		        	throw new IllegalArgumentException("Invalid Plate Command Type");
-		    }
-			
-		} catch (Exception exception) {
-			throw exception;
-		}
-		
-        return command;
-	}
-	
 }

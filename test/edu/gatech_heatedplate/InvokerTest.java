@@ -15,7 +15,7 @@ import edu.gatech.heatedplate.tpfahp.TpfahpCommand;
 import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
 import edu.gatech.heatedplate.twfahp.TwfahpCommand;
 import edu.gatech.heatedplate.twfahp.TwfahpPlate;
-
+import static edu.gatech.heatedplate.Gallhp.HeatedPlateConstant.PlateCommandType.*;
 
 
 public class InvokerTest {
@@ -40,7 +40,7 @@ public class InvokerTest {
 	
 		//************************ Second Invocation using tpfahp **********************************/
 		  heatedPlate = new TpfahpPlate(latSize, 120.0f,300.23f,45.122f,57.87f);
-		  TpfahpCommand tpfahp = (TpfahpCommand) invoke.setCommand("Tpfahp", heatedPlate);
+		  TpfahpCommand tpfahp = (TpfahpCommand) invoke.createCommand(PLATE_COMMAND_TYPE_TPFAHP, heatedPlate);
 		 
 	      do{
            
@@ -61,7 +61,7 @@ public class InvokerTest {
 		
 		  //************************ Third Invocation using twfahp **********************************/
 		  heatedPlate = new TwfahpPlate(latSize, 120.0f,300.23f,45.122f,57.87f);
-		  TwfahpCommand twfahp = (TwfahpCommand) invoke.setCommand("Twfahp", heatedPlate);
+		  TwfahpCommand twfahp = (TwfahpCommand) invoke.createCommand(PLATE_COMMAND_TYPE_TWFAHP, heatedPlate);
 		     
 	 
 	      do{
@@ -87,7 +87,7 @@ public class InvokerTest {
 		  //***********************first Invocation using tpdahp ***************************************/
 		  heatedPlate = new TpdahpPlate(latSize, 120.0,300.23,45.122,57.87);
 		  
-		  TpdahpCommand tpdahp = (TpdahpCommand) invoke.setCommand("Tpdahp", heatedPlate);
+		  TpdahpCommand tpdahp = (TpdahpCommand) invoke.createCommand(PLATE_COMMAND_TYPE_TPDAHP, heatedPlate);
 		     
 	 
 	      do{
@@ -119,7 +119,7 @@ public class InvokerTest {
 		  //***********************four Invocation using tpdohp ***************************************/
 		  heatedPlate = new ObjectPlate(latSize,latSize, 120.0,300.23,45.122,57.87);
 		 ((ObjectPlate)heatedPlate).intializePlate();
-		  TpdohpCommand tpdohp = (TpdohpCommand) invoke.setCommand("Tpdohp", heatedPlate);
+		  TpdohpCommand tpdohp = (TpdohpCommand) invoke.createCommand(PLATE_COMMAND_TYPE_TPDOHP, heatedPlate);
 		     
 	 
 	      do{

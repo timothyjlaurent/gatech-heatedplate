@@ -19,6 +19,7 @@ package edu.gatech.heatedplate.common;
 	 * @see Plate
      * @see tpdahpCommand 
 	 */ 
+import edu.gatech.heatedplate.Gallhp.HeatedPlateConstant.PlateCommandType;
 import edu.gatech.heatedplate.Tpdohp.ObjectPlate;
 import edu.gatech.heatedplate.Tpdohp.TpdohpCommand;
 import edu.gatech.heatedplate.tpdahp.TpdahpCommand;
@@ -30,56 +31,38 @@ import edu.gatech.heatedplate.twfahp.TwfahpPlate;
 
 public class Invoker {
 	
-	
-	    public static Command setCommand (String algType, Plate invkerPlate) {
-	    	try 
-	    	   {
-	    	
-  	             Command CmdObj = null;
-	      
-	             switch (algType.toUpperCase())
-	                {
-                     // array of primitive doubles  	        
-                     case "TPDAHP":
-                     CmdObj = new TpdahpCommand((TpdahpPlate)invkerPlate);
-	                 break;
-	 
-	                 // array of primative float             
-                     case "TPFAHP":
-	                 CmdObj = new TpfahpCommand((TpfahpPlate)invkerPlate);
-	                 break;
-	             
-	                 // array of Float wrapper class
-	                 case "TWFAHP":
-		             CmdObj = new TwfahpCommand((TwfahpPlate)invkerPlate);
-		             break;
-	             
-		             // object implentation without array
-	                 case "TPDOHP":
-			         CmdObj = new TpdohpCommand((ObjectPlate)invkerPlate);
-			         break;
-
-	                default:
-	                throw new IllegalArgumentException("Can not Invoke the command type requested");
-                  
-	              } 
-	             
-	             return CmdObj;
-	           }
-	    	catch(Exception e) 
-	    	 	 { 
-	    			throw new IllegalArgumentException(e.getMessage()); 
-	    	 		 
-	    	 	 }  
-     
-	             
-	       
-	    }
-	
-
-
 	public Invoker() {
-		// TODO Auto-generated constructor stub
+
+	}
+	
+	public static Command createCommand(PlateCommandType plateCommandType, Plate plate) {
+		Command command = null;
+		try { 
+			if (plate == null) {
+				throw new IllegalArgumentException("Null Plate Object");
+			}
+							
+			switch (plateCommandType) {
+				case PLATE_COMMAND_TYPE_TPDAHP:
+					command = new TpdahpCommand((TpdahpPlate)plate);
+					break; 
+				case PLATE_COMMAND_TYPE_TPFAHP:
+					command = new TpfahpCommand((TpfahpPlate)plate);
+					break;
+				case PLATE_COMMAND_TYPE_TWFAHP:
+					command = new TwfahpCommand((TwfahpPlate)plate);
+					break;
+				case PLATE_COMMAND_TYPE_TPDOHP:
+					command = new TpdohpCommand((ObjectPlate)plate);
+					break;	 
+				default:
+					break;
+			}
+		} catch (Exception exception) {
+			
+		}
+							
+		return command;
 	}
 
 }

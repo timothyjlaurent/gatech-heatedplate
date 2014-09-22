@@ -28,8 +28,7 @@ import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
  	*/ 
 public class Demo {
 
-	public Demo() {
-		
+	public Demo() {		
 	}
 
 	public static double deltaThreshold = .01;

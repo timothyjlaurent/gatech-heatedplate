@@ -16,14 +16,14 @@ public class HeatedPlateConstant {
     	PLATE_COMMAND_TYPE_TWFAHP(2),
     	PLATE_COMMAND_TYPE_TPDOHP(3);
 		
-		private int plateCommandType;
- 
+    	public int getPlateType() {
+			return plateCommandType;
+		}
+    	
 		private PlateCommandType(final int plateCommandType) {
 			this.plateCommandType = plateCommandType;
 		}
 		 
-		public int getPlateType() {
-			return plateCommandType;
-		}
+		private int plateCommandType;		 
     };
 }
