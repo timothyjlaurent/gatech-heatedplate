@@ -3,7 +3,6 @@ package edu.gatech.heatedplate.Gallhp;
 
 import edu.gatech.heatedplate.common.Command;
 import edu.gatech.heatedplate.common.Plate;
-
 import edu.gatech.heatedplate.tpdahp.TpdahpCommand;
 import edu.gatech.heatedplate.tpdahp.TpdahpPlate;
 import edu.gatech.heatedplate.tpfahp.TpfahpCommand;
@@ -12,7 +11,6 @@ import edu.gatech.heatedplate.twfahp.TwfahpCommand;
 import edu.gatech.heatedplate.twfahp.TwfahpPlate;
 import edu.gatech.heatedplate.Tpdohp.ObjectPlate;
 import edu.gatech.heatedplate.Tpdohp.TpdohpCommand;
-
 import static edu.gatech.heatedplate.Gallhp.HeatedPlateConstant.*;
 
 public class HeatedPlateFactory {
@@ -25,7 +23,7 @@ public class HeatedPlateFactory {
 									Double leftEdgeTemperature,
 									Double rightEdgeTemperature,
 									Double topEdgeTemperature,
-									Double bottomEdgeTemperature) {
+									Double bottomEdgeTemperature) throws Exception {
 		Plate plate = null;
         try {
 			switch (plateCommandType) {
@@ -70,7 +68,7 @@ public class HeatedPlateFactory {
 	}
 	
 	public static Command createCommand(PlateCommandType plateCommandType,
-										Plate plate) {
+										Plate plate) throws Exception {
 		Command command = null;
 		try { 
 			if (plate == null) {

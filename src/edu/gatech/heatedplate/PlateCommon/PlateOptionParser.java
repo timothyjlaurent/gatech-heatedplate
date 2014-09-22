@@ -1,5 +1,10 @@
 package edu.gatech.heatedplate.PlateCommon;
-
+/**
+ * 
+ * 
+ * @author tlaurent
+ *
+ */
 public class PlateOptionParser {
 	
 	public static PlateOptionObj parseOptions(String[] argv) throws Exception{
@@ -17,11 +22,8 @@ public class PlateOptionParser {
 				length = checkD( argv[ i + 1 ] );
 				optionObj.setHeight(length);
 				optionObj.setWidth(length);	
-			}
-			
-			if( cur.equals("-l") ){
-				
-				
+			}		
+			if( cur.equals("-l") ){	
 				try {
 					left = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -30,12 +32,9 @@ public class PlateOptionParser {
 				if ( left < 0 || left > 100 ){
 					throw new PlateException("-l must be between 0 and 100!");
 				}
-				optionObj.setLeft(left);
-				
+				optionObj.setLeft(left);		
 			}
 			if( cur.equals("-r") ){
-				
-				
 				try {
 					right = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -45,11 +44,8 @@ public class PlateOptionParser {
 					throw new PlateException("-r must be between 0 and 100!");
 				}
 				optionObj.setRight(right);
-				
 			}
 			if( cur.equals("-t") ){
-				
-				
 				try {
 					top = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -59,11 +55,8 @@ public class PlateOptionParser {
 					throw new PlateException("-t must be between 0 and 100!");
 				}
 				optionObj.setTop(top);
-				
 			}
 			if( cur.equals("-b") ){
-				
-				
 				try {
 					bottom = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -74,12 +67,10 @@ public class PlateOptionParser {
 				}
 				optionObj.setBottom(bottom);	
 			}
-		}
-		
+		}	
 		if( checkOptionObj(optionObj) == false ){
 			throw new PlateException("Must include all command parameters: -d -l -r -t -b !");
 		} 
-		
 		return optionObj;
 		
 	}

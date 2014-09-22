@@ -3,6 +3,7 @@ package edu.gatech.heatedplate.twfahp;
 import java.util.HashMap;
 
 import edu.gatech.heatedplate.common.Plate;
+import edu.gatech.heatedplate.tpfahp.TpfahpPlate;
 
 public class TwfahpPlate implements Plate {
 
@@ -11,7 +12,7 @@ public class TwfahpPlate implements Plate {
     private Float      mTop;
     private Float      mBottom; 
 	public  Float[][]  mPlateValues;   // stores the temperature for each lattice point of the plate
-	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
+	public  int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
 	/* concrete plate constructor for Tpdahp plate 
@@ -23,7 +24,7 @@ public class TwfahpPlate implements Plate {
 	 */
 	public TwfahpPlate(int d , Float l, Float r, Float t, Float b) 
 	  {
-		numIterations++;     // static counter for number of instantiated iterations 
+		     // static counter for number of instantiated iterations 
         mPlateValues      = new Float[d + 2] [d +2] ;  //creates a 2 dimensional array of float in the size of d +2
         mLeft             = l;
         mRight            = r;
@@ -31,8 +32,34 @@ public class TwfahpPlate implements Plate {
         mBottom           = b;
         mDim              = d;
         setEdgeValues(d);
+        numIterations = 0;
   
 	  }
+	
+	
+	public TwfahpPlate( Plate oldFloatPlate) 
+	  {
+	  this.numIterations = oldFloatPlate.getIteration() +1;    
+	  int d = oldFloatPlate.getDimension();
+  Float l = (float)oldFloatPlate.getLeft();
+  Float r = (float)oldFloatPlate.getRight();
+  Float t = (float)oldFloatPlate.getTop();
+  Float b = (float)oldFloatPlate.getBottom();
+	  
+	  mPlateValues      = new Float[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+  mLeft             = l;
+  mRight            = r;
+  mTop              = t;
+  mBottom           = b;
+  mDim              = d;
+  setEdgeValues(d);
+
+	  }
+
+	public void resetIterations(){
+		numIterations = 0 ; 
+	}
+	
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice
@@ -69,40 +96,33 @@ public class TwfahpPlate implements Plate {
 	}
 	
 
-	@Override
-	public HashMap<Integer, Plate> getTemp() {
-		
-		HashMap<Integer,Plate> map = new HashMap<Integer,Plate>();
-		map.put(numIterations, this);
-		
-	  return map;
-	}
 
-	public Float getLeft() {
-		return mLeft;
-	}
+
+//	public Float getLeft() {
+//		return mLeft;
+//	}
 
 	public void setLeft(Float mLeft) {
 		this.mLeft = mLeft;
 	}
-	public Float getRight() {
-		return mRight;
-	}
+//	public Float getRight() {
+//		return mRight;
+//	}
 
 	public void setRight(Float mRight) {
 		this.mRight = mRight;
 	}
-	public Float getTop() {
-		return mTop;
-	}
+//	public Float getTop() {
+//		return mTop;
+//	}
 
 	public void setTop(Float mTop) {
 		this.mTop = mTop;
 	}
 	
-	public float getBottom() {
-		return mBottom;
-	}
+//	public float getBottom() {
+//		return mBottom;
+//	}
 
 	public void setBottom(Float mBottom) {
 		this.mBottom = mBottom;
@@ -129,12 +149,59 @@ public class TwfahpPlate implements Plate {
 	
 	
 	public double[][] toArray(){
-		double[][] out = new double[mDim][mDim];
-		for( int row = 0 ; row < mDim ; row += 1 ){
-			for( int col = 0 ; col < mDim ; col += 1  ){
-				out[row][col] = mPlateValues[row][col].doubleValue();
+		double[][] ret = new double[mDim][mDim]; 
+		for ( int col = 0 ; col < mDim ; col += 1){
+			for( int row = 0 ; row < mDim ; row += 1){
+				ret[row][col] = (double)mPlateValues[row+1][col + 1];
 			}
 		}
-		return out;
+		return ret ;
+	}
+
+
+	@Override
+	public int getIteration() {
+		// TODO Auto-generated method stub
+		return numIterations;
+	}
+
+
+	@Override
+	public double getTop() {
+		// TODO Auto-generated method stub
+		return (double)mTop;
+	}
+
+
+	@Override
+	public double getRight() {
+		// TODO Auto-generated method stub
+		return (double)mRight;
+	}
+
+
+	@Override
+	public double getBottom() {
+		// TODO Auto-generated method stub
+		return (double)mBottom;
+	}
+
+
+	@Override
+	public double getLeft() {
+		// TODO Auto-generated method stub
+		return (double)mLeft;
+	}
+
+
+	public void setTemp(int row, int col, double val) {
+		// TODO Auto-generated method stub
+		mPlateValues[row][col] = (float)val;
+		
+	}
+
+
+	public double getTemp(int row, int col) {
+		return (double)mPlateValues[row][col];
 	}
 }

@@ -10,8 +10,8 @@ public class TpdahpPlate implements Plate {
     private double      mRight;
     private double      mTop;
     private double      mBottom; 
-	private  double[][]  mPlateValues  ;   // stores the temperature for each lattice point of the plate
-	public static int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
+	double[][]  mPlateValues  ;   // stores the temperature for each lattice point of the plate
+	public int  numIterations;  // static counter to keep track of the number of times plate was instantiated (iterations)
 	private int         mDim;
  	
 	/* concrete plate constructor for Tpdahp plate 
@@ -23,7 +23,7 @@ public class TpdahpPlate implements Plate {
 	 */
 	public TpdahpPlate(int d , double l, double r, double t, double b) 
 	  {
-		numIterations++;     // static counter for number of instantiated iterations 
+		numIterations = 0;     // static counter for number of instantiated iterations 
         setmPlateValues(new double[d + 2] [d +2]) ;  //creates a 2 dimensional array of doubles in the size of d +2
         mLeft             = l;
         mRight            = r;
@@ -33,6 +33,34 @@ public class TpdahpPlate implements Plate {
         setEdgeValues(d);
        
 	  }
+
+	public TpdahpPlate( TpdahpPlate doublePlate) 
+	  {
+	  numIterations = doublePlate.numIterations + 1;     // static counter for number of instantiated iterations 
+	  int d = doublePlate.getDimension();
+      double l = doublePlate.getLeft();
+      double r = doublePlate.getRight();
+      double t = doublePlate.getTop();
+      double b = doublePlate.getBottom();
+	  
+	  mPlateValues      = new double[d + 2] [d +2] ;  //creates a 2 dimensional array of doubles in the size of d +2
+      mLeft             = l;
+      mRight            = r;
+      mTop              = t;
+      mBottom           = b;
+      mDim              = d;
+      setEdgeValues(d);
+
+	  }
+	
+	
+	
+	
+	
+	
+	public void resetIterations(){
+		numIterations = 0 ; 
+	}
 	
 	/* Initializes Plate edge temperatures to values specified 
 	 * @param <b>d</b> height width dimensions for the plate lattice
@@ -65,15 +93,6 @@ public class TpdahpPlate implements Plate {
 		
 	}
 	
-
-	@Override
-	public HashMap<Integer, Plate> getTemp() {
-		
-		HashMap<Integer,Plate> map = new HashMap<Integer,Plate>();
-		map.put(numIterations, this);
-		
-	  return map;
-	}
 
 	public double getLeft() {
 		return mLeft;
@@ -133,7 +152,28 @@ public class TpdahpPlate implements Plate {
 	}
 	
 	public double[][] toArray(){
-		return mPlateValues;
+		double[][] ret = new double[mDim][mDim]; 
+		for ( int col = 0 ; col < mDim ; col += 1){
+			for( int row = 0 ; row < mDim ; row += 1){
+				ret[row][col] = (double)mPlateValues[row+1][col + 1];
+			}
+		}
+		return ret ;
+	}
+
+	public int getIteration() {
+		// TODO Auto-generated method stub
+		return numIterations;
+	}
+
+	public void setTemp(int row, int col, double val) {
+		mPlateValues[row][col] = val;
+		
+	}
+
+	public double getTemp(int row, int col) {
+		// TODO Auto-generated method stub
+		return (double)mPlateValues[row][col];
 	}
 
 }
