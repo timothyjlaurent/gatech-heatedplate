@@ -67,45 +67,48 @@ public class HeatedPlateResultPanel extends JPanel implements Runnable {
 			}
 	 }
 	 
-    private void paintSpot(Graphics aGraphics, int row, int col, double t) {
-        int rowPos = PANEL_GRID_BORDER_GAP + row * gridHeight/dimension;
-        int colPos = PANEL_GRID_BORDER_GAP + col * gridWidth/dimension;
-
-        // Overwrite everything that was there previously
-        aGraphics.setColor(Color.black);
-        aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);
-        
-        // Color in RGB format with green and blue values = 0.0
-        try {
-        if (!simulationProgress) {
-        	aGraphics.setColor(new Color(0.f, 0.f, 0.f));
-        } else {
-        	aGraphics.setColor(new Color((float)color[row][col]/100, 0.f, 0.f));
-        }
-        } catch(Exception exception) {
-        	int k = 0;
-        }
-        
-        aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);
+    private void paintGrid(Graphics aGraphics) {
+    	
+    	try {
+    	
+	    	if (aGraphics != null) {
+	    	
+		    	int rowPos = 0;
+		    	int colPos = 0;
+		    	 for (int i = 0; i < dimension; i++) {
+		    		for (int j = 0; j < dimension; j++) {
+		    	
+		    			rowPos = PANEL_GRID_BORDER_GAP + i * gridHeight/dimension;
+		    			colPos = PANEL_GRID_BORDER_GAP + j * gridWidth/dimension;
+		
+				        aGraphics.setColor(Color.black);
+				        aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);       
+				        
+				        if (!simulationProgress) {
+				        	aGraphics.setColor(new Color(0.f, 0.f, 0.f));
+				        } else {
+				        	aGraphics.setColor(new Color((float)color[i][j]/100, 0.0f, 0.f));
+				        }
+				        aGraphics.fillRect(colPos, rowPos, gridWidth/dimension, gridHeight/dimension);
+		    		}
+		    	}
+		        
+	    	}
+		 } catch(Exception exception) {
+			        	
+		}
     }
     
 	protected void paintComponent(Graphics aGraphics) {
         super.paintComponent(aGraphics);
         
-        BufferedImage bi = new BufferedImage(getWidth() - (2 * PANEL_GRID_BORDER_GAP), 
+        BufferedImage bufferedImage = new BufferedImage(getWidth() - (2 * PANEL_GRID_BORDER_GAP), 
         									 getHeight() - (2 * PANEL_GRID_BORDER_GAP),
         									 BufferedImage.TYPE_INT_ARGB);
-        Graphics anotherGraphics = bi.createGraphics();
-
-        for (int i = 0; i < dimension; i++)
-            for (int j = 0; j < dimension; j++)
-                // Instead of calling random, here is where you
-                //   would insert the call that would provide
-                //   the temperature of the corresponding cell
-                //   on the heated plate.
-                paintSpot(anotherGraphics, i, j, Math.random());
+        Graphics anotherGraphics = bufferedImage.createGraphics();
+        paintGrid(anotherGraphics);
         
-        aGraphics.drawImage(bi, 0, 0, this);
+        aGraphics.drawImage(bufferedImage, 0, 0, this);
    }
 	
 	private HeatedPlateFrame heatedPlateFrame;

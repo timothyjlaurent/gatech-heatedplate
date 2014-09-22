@@ -74,7 +74,9 @@ public class HeatedPlateController implements Runnable {
 			 
 			try {
 				Thread.sleep(50);
-			}catch(Exception e){}
+			}catch(Exception e){
+				
+			}
 		 }
 		}
 	 }

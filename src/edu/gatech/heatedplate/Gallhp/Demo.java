@@ -42,10 +42,6 @@ public class Demo {
     	    	heatedPlateFrame.initFrame();
     	    	heatedPlateFrame.setVisible(true);
     	    }
-    	});
-    	
-    	      
+    	});   
     }
-    
-    
 }
