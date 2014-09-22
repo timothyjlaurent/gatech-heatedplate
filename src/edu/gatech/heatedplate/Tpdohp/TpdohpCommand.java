@@ -17,8 +17,8 @@ public class TpdohpCommand implements Command {
 
 	public TpdohpCommand(ObjectPlate op){
 		iteration = 0 ;
-		newPlate = new ObjectPlate(op.getWidth(), op.getHeight(), 
-				op.getTop(), op.getRight(), op.getBottom(), op.getLeft());
+//		newPlate = new ObjectPlate(op.getWidth(), op.getHeight(), 
+//				op.getTop(), op.getRight(), op.getBottom(), op.getLeft());
 
 	}
 

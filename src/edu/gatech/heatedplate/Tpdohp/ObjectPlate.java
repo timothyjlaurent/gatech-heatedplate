@@ -57,7 +57,7 @@ public class ObjectPlate implements Plate {
 		this.right = new GridObj( right );
 		this.left = new GridObj( left );
 		this.bottom = new GridObj( bottom );
-		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( height * 5 );
+		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( height * 2 );
 //		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( );
 		
 //		for( int row = 0 ; row < height ; row += 1 ){
@@ -83,6 +83,7 @@ public class ObjectPlate implements Plate {
 		this.bottom = new GridObj(oldPlate.getBottom());
 		this.left = new GridObj(oldPlate.getLeft());
 		this.iteration = oldPlate.getIteration() + 1;
+		grid = new HashMap<Integer, HashMap<Integer, GridObj >>( height * 2);
 	}
 	
 	
@@ -255,7 +256,6 @@ public class ObjectPlate implements Plate {
 				+"\nright : " + df.format(right.getTemp()) 
 				+"\ndown : " + df.format(bottom.getTemp()) 
 				+"\nleft : " + df.format(left.getTemp()) 
-				+"\n\nMax delta : " + df.format(maxDelta)
 				+ "\n\n"; 			
 	}
 	

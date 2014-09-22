@@ -1,43 +1,43 @@
 package edu.gatech.heatedplate.PlateCommon;
 
 public class PlateOptionObj {
-	public Integer height;
-	public Integer width;
-	public Double left;
-	public Double right;
-	public Double top; 
-	public Double bottom;
-	public Integer getHeight() {
+	public int height;
+	public int width;
+	public double left;
+	public double right;
+	public double top; 
+	public double bottom;
+	public int getHeight() {
 		return height;
 	}
 	public void setHeight(Integer height) {
 		this.height = height;
 	}
-	public Integer getWidth() {
+	public int getWidth() {
 		return width;
 	}
 	public void setWidth(Integer width) {
 		this.width = width;
 	}
-	public Double getLeft() {
+	public double getLeft() {
 		return left;
 	}
 	public void setLeft(Double left) {
 		this.left = left;
 	}
-	public Double getRight() {
+	public double getRight() {
 		return right;
 	}
 	public void setRight(Double right) {
 		this.right = right;
 	}
-	public Double getTop() {
+	public double getTop() {
 		return top;
 	}
 	public void setTop(Double top) {
 		this.top = top;
 	}
-	public Double getBottom() {
+	public double getBottom() {
 		return bottom;
 	}
 	public void setBottom(Double bottom) {

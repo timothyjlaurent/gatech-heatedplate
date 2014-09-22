@@ -24,6 +24,7 @@ public class PlateOptionParser {
 				optionObj.setWidth(length);	
 			}		
 			if( cur.equals("-l") ){	
+				cur = argv[i+1];
 				try {
 					left = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -35,6 +36,7 @@ public class PlateOptionParser {
 				optionObj.setLeft(left);		
 			}
 			if( cur.equals("-r") ){
+				cur = argv[i+1];
 				try {
 					right = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -46,6 +48,7 @@ public class PlateOptionParser {
 				optionObj.setRight(right);
 			}
 			if( cur.equals("-t") ){
+				cur = argv[i+1];
 				try {
 					top = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -57,6 +60,7 @@ public class PlateOptionParser {
 				optionObj.setTop(top);
 			}
 			if( cur.equals("-b") ){
+				cur = argv[i+1];
 				try {
 					bottom = Double.parseDouble(cur);
 				} catch ( NumberFormatException e){
@@ -94,12 +98,12 @@ public class PlateOptionParser {
 	
 	private static boolean checkOptionObj(PlateOptionObj optionObj) {
 		
-		if ( optionObj.getHeight() == null ||
-				optionObj.getWidth() == null ||
-				optionObj.getLeft() == null ||
-				optionObj.getRight() == null ||
-				optionObj.getTop() == null ||
-				optionObj.getBottom() == null){
+		if ( new Integer(optionObj.height) == null ||
+				new Integer(optionObj.getWidth()) == null ||
+				new Double(optionObj.getLeft()) == null ||
+				new Double(optionObj.getRight()) == null ||
+				new Double(optionObj.getTop()) == null ||
+				new Double(optionObj.getBottom()) == null){
 			return false;
 		}
 		return true;
